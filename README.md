@@ -11,10 +11,12 @@ __Installation guide__
 > __https://github.com/YosysHQ/yosys__
 
 __Prerequiste dependency__
->$ __sudo apt-get install build-essential clang bison flex \
-	libreadline-dev gawk tcl-dev libffi-dev git \
-	graphviz xdot pkg-config python3 libboost-system-dev \
-	libboost-python-dev libboost-filesystem-dev zlib1g-dev__
+...
+$ sudo apt-get install build-essential clang bison flex \
+  libreadline-dev gawk tcl-dev libffi-dev git \
+  graphviz xdot pkg-config python3 libboost-system-dev \
+  libboost-python-dev libboost-filesystem-dev zlib1g-dev
+...
 	
 __Installation Flow__
 $ mkdir yosys-master
