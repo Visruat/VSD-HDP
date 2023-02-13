@@ -18,7 +18,6 @@ __Prerequiste dependency__
 	
 __Installation Flow__
 >$ mkdir yosys-master
->
 $ cd yosys-master
 
 $ git clone https://github.com/YosysHQ/yosys.git
