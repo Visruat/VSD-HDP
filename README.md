@@ -1,11 +1,12 @@
 A repository containing a detailed documentation of the activities in the VSD-HDP program
 
-Program link:![VSD-HDP](https://www.vlsisystemdesign.com/hdp/)
+Program link: [VSD-HDP](https://www.vlsisystemdesign.com/hdp/)
 
-	* Author: Visruat(Visruat T R), ![visruattr@gmail.com](https://mail.google.com/mail/u/0/#inbox)
-	
-	* Program Quick links
-	
+   - Author: Visruat(Visruat T R), [visruattr@gmail.com](https://mail.google.com/mail/u/0/#inbox)
+
+   * Program quick links:-
+     1. ....
+
 
 # VSD-HDP Status 
 
