@@ -2,7 +2,7 @@ A repository containing a detailed documentation of the activities in the VSD-HD
 
 Program link: [VSD-HDP](https://www.vlsisystemdesign.com/hdp/)
 
-   - Author: Visruat(Visruat T R), [visruattr@gmail.com](https://mail.google.com/mail/u/0/#inbox)
+   - Author: Visruat(Visruat T R), [visruattr@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=DmwnWrRlQHWhjxdSBCGtJrvNFWlRTXScgPpNKrkdZjWtwZbdTKCNsWBlKpBtVKVvbwZCnwGMFPxg)
 
    * Program quick links:-
      1. ....
