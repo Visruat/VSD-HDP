@@ -1,5 +1,13 @@
-# Visruat-VSD-HDP
-documentation of the activities in the VSD-HDP program
+A repository containing a detailed documentation of the activities in the VSD-HDP program
+
+Program link:![VSD-HDP](https://www.vlsisystemdesign.com/hdp/)
+
+	* Author: Visruat(Visruat T R) visruattr@gmail.com
+	
+	* Program Quick links
+	
+
+# VSD-HDP Status 
 
 ## Day 0 
 System/Tool Setup Check --> all necessary tools and system updates were installed.
@@ -95,3 +103,18 @@ $ sudo make install
 __Progress image__
 
 ![ngspice](https://user-images.githubusercontent.com/125136551/218372833-4e918809-5289-442d-888c-36851d5127f3.png)
+
+__Note: gtkwave and iverilog were also installed __
+
+_iverilog_
+
+```$ sudo apt-get install iverilog ```
+
+_gtkwave_
+
+```
+$ sudo apt update
+$ sudo apt install gtkwave
+```
+
+## Day 1
