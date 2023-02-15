@@ -105,7 +105,7 @@ __Progress image__
 
 ![ngspice](https://user-images.githubusercontent.com/125136551/218372833-4e918809-5289-442d-888c-36851d5127f3.png)
 
-__Note: gtkwave and iverilog were also installed __
+**Note: gtkwave and iverilog were also installed **
 
 _iverilog_
 
