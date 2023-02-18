@@ -134,4 +134,90 @@ $   sudo apt-get install libncurses-dev
 
 ## Day 1
 
+Learning how to use softwares like iverilog , gtkwave ,yosys etc
 
+# 7x1 MUX using iverilog and gtkwave 
+
+__RTL__
+
+``` 
+`timescale 1ns / 1ps
+
+module own_MUX_7x1(
+
+    input [6:0] i,
+
+    input [2:0] s,
+
+    output reg y
+
+    );
+
+	always@(i,s)
+	begin
+		case(s)
+				3'b000: y = i[0];
+				3'b001: y = i[1];
+				3'b010: y = i[2];
+				3'b011: y = i[3];
+				3'b100: y = i[4];
+				3'b101: y = i[5];
+				3'b110: y = i[6];
+				3'b111: y = i[6];
+				default: y = i[0];
+		endcase
+	end
+endmodule
+```
+
+__Testbench__
+
+```
+`timescale 1ns / 1ps
+
+module tb_own_MUX_7x1();
+
+  reg [6:0]i;
+
+  reg [2:0]s;
+
+  wire y;
+
+  own_MUX_7x1 uut(i,s,y);
+
+
+initial
+    begin
+    $dumpfile("own_MUX_7x1.vcd");
+    $dumpvars(0,tb_own_MUX_7x1);
+    i=0;
+    s=0;
+    
+    #300 $finish;
+    end
+
+always #10 i=i+1;
+always #25 s=s+1;
+
+endmodule
+
+```
+
+__Simulation Waveform__
+
+
+![mux7x1_sim](https://user-images.githubusercontent.com/125136551/219855886-9130768c-4f81-4812-8152-2f44d8e2214b.png)
+
+
+__Synthesis__
+
+![mux7x1cells](https://user-images.githubusercontent.com/125136551/219855926-364b343b-7303-473f-9ea2-206114cef57c.png)
+
+The following standard cells were invoked when mapped to the standard library file.
+
+The synthesis of the design is as shown below
+
+
+![mux7x1syn](https://user-images.githubusercontent.com/125136551/219855998-d2f4b03f-24e6-48f1-b24b-92102bca1da3.png)
+
+__Netlist__
