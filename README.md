@@ -381,3 +381,57 @@ The above diagram involves the cells invoked to solve a complex boolean logic ``
 The optimisation of this boolean funvtion resulted in a XNOR gate ```y = a^c``` as shown in the image below:
 
 ![optcheck4syn](https://user-images.githubusercontent.com/125136551/219857860-fd9eef1a-f501-43ea-a60a-e2a5de6ab7bc.png)
+
+
+Here is another example where a hierachy of the modules exist.
+
+![multmodcells](https://user-images.githubusercontent.com/125136551/219863939-d9b5747b-4356-4ba9-a227-639b9a418f4a.png)
+
+these cells were inferred on synthesisiing the RTL file
+
+![multmodsyn](https://user-images.githubusercontent.com/125136551/219864007-2e21564e-685c-4b21-84b8-8a13735fb073.png)
+
+The above image shows the synthesis of the design without removal of the hierachy. Yosys infers only the necessary logic which is linked to the outputof the design.
+
+On removal of hierachy and optimising the logic using ```flatten``` and ```opt_clean -purge``` , the following result was obtained:
+
+![multmodpurged](https://user-images.githubusercontent.com/125136551/219864171-661fcb69-49e3-4a3b-b639-75861e510cb6.png)
+
+__Sequential Logic Optimisation__
+
+Two examples were used to show the difference in design. [Sequential Constant - Basics]
+
+![seqconst](https://user-images.githubusercontent.com/125136551/219864385-e66978cb-a138-440c-9410-fd8149d88fc6.png)
+
+The above diagram is the optimised design after identifying a sequential constant. Since the values of q1 and q remain unaffected by any change in inputs the combinations of D flipflops was replaced by a simple wires.
+
+
+![seqconstcells](https://user-images.githubusercontent.com/125136551/219864498-ad0cda10-8698-4830-9b5b-7c19eba99664.png)
+
+Now consider the second case where a sequential constant was not identified
+
+![dffconst5syn](https://user-images.githubusercontent.com/125136551/219864643-8930f23a-4f09-4d32-ad22-4f712d944e62.png)
+
+The outputs q1 and q were not constant throughout and could be affected by inputs like reset and clk. Hence flops had to be inferred to complete the design synthesis. 
+
+![notseqconstcells](https://user-images.githubusercontent.com/125136551/219864822-8db95e97-3fd7-4cc6-989c-c9ccee49bbc2.png)
+
+__A case of optimisation of unused ports which are not linked to the design output__
+
+3 bit up counter:
+
+case 1: ```assign q = count[0];```
+
+
+![dffoptimistation](https://user-images.githubusercontent.com/125136551/219865087-55a24ebd-45d1-4dbf-8027-45eac6be59e4.png)
+
+it is clearly visible that yosys has optimised uncessary logic i.e the other two bits of the counter , that is not linked to the output q. 
+
+case 2: ```assign q = (count[2:0] == 3'b100);``` 
+
+![dffoptimisation2](https://user-images.githubusercontent.com/125136551/219865474-298f0499-542e-4d17-a39e-1de1f186b660.png)
+
+In this case all bits of the counter are affiliated with q. Hence three flops are inferred to represent the same. The other circuitry contributes to the incrementation of the counter.
+
+
+## DAY 4
