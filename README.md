@@ -358,7 +358,7 @@ __Flattened png__
 ![mux7x1synflat](https://user-images.githubusercontent.com/125136551/219857030-9ca7b55e-3e5d-40c7-b671-aa9cab585093.png)
 
 
-'flatten' was used to break the hierachy and make a single module.
+```flatten``` was used to break the hierachy and make a single module.
 
 __D flip-flop with asynchronous and synchronous reset__
 
