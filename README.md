@@ -377,11 +377,9 @@ Logic Optimization: combinational and sequential (basic)
 
 __Combinational Logic Optimisation__
 
-To remove unused cells from the synthesis design, the command ```'opt_clean -purge'``` is used. It optimises the cells that are redundant to the design but have been intialised from RTL code.
+To remove unused cells from the synthesis design, the command ```opt_clean -purge``` is used. It optimises the cells that are redundant to the design but have been intialised from RTL code.
 
-
-![optcheck4cells](https://user-images.githubusercontent.com/125136551/219857892-20726746-7c77-4676-8f29-cd8d123b2312.png)
-
+![optcheck4cells](https://user-images.githubusercontent.com/125136551/219866952-a6359b0c-0293-466b-a704-990336f26dfd.png)
 
 The above diagram involves the cells invoked to solve a complex boolean logic ```y = a?(b?(a & c ):c):(!c);```
 
