@@ -8,11 +8,11 @@ Program link: [VSD-HDP](https://www.vlsisystemdesign.com/hdp/)
      1. ....
 
    * VSD-HDP Status Quick links:-
-   	1. [DAY 0](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-0)
-     	2. [DAY 1](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-1)
-     	3. [DAY 2](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-2)
-     	4. [DAY 3](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-3)
-     	5. [DAY 4](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-4)
+     1. [DAY 0](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-0)
+     2. [DAY 1](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-1)
+     3. [DAY 2](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-2)
+     4. [DAY 3](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-3)
+     5. [DAY 4](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-4)
 
 # VSD-HDP Status 
 
