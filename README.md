@@ -7,6 +7,11 @@ Program link: [VSD-HDP](https://www.vlsisystemdesign.com/hdp/)
    * Program quick links:-
      1. ....
 
+   * VSD-HDP Status Quick links
+     1.[DAY 0]([url](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-0))
+     2.[DAY 1](url)
+     3.[DAY 3](url)
+     4.[DAY 4](url)
 
 # VSD-HDP Status 
 
