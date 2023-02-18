@@ -339,3 +339,29 @@ endmodule
 ## DAY 2
 
 Hierarchy and flat synthesis under Yosys ; Synthesis of a flop
+
+__Hierachy png__
+
+
+![mux7x1synhier](https://user-images.githubusercontent.com/125136551/219856997-6584e4c7-fd94-4501-a307-a370e71d02e8.png)
+
+
+__Flattened png__
+
+![mux7x1synflat](https://user-images.githubusercontent.com/125136551/219857030-9ca7b55e-3e5d-40c7-b671-aa9cab585093.png)
+
+
+'flatten' was used to break the hierachy and make a single module.
+
+__D flip-flop with asynchronous and synchronous reset__
+
+
+![dffsyn](https://user-images.githubusercontent.com/125136551/219857161-d6b5deb7-a456-447c-9366-c101d98ecd9d.png)
+
+
+to make use of the D Flip-Flop , the following command needed to be executed before mapping to the standarad cell library
+
+```dfflibmap -liberty <relative or abs path>/ lib file```
+
+
+## DAY 3
