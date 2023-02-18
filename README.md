@@ -136,7 +136,7 @@ $   sudo apt-get install libncurses-dev
 
 Learning how to use softwares like iverilog , gtkwave ,yosys etc
 
-# 7x1 MUX using iverilog and gtkwave 
+### 7x1 MUX using iverilog and gtkwave 
 
 flow for simulation:
 ```
