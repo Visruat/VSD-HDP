@@ -359,9 +359,25 @@ __D flip-flop with asynchronous and synchronous reset__
 ![dffsyn](https://user-images.githubusercontent.com/125136551/219857161-d6b5deb7-a456-447c-9366-c101d98ecd9d.png)
 
 
-to make use of the D Flip-Flop , the following command needed to be executed before mapping to the standarad cell library
+to make use of the D Flip-Flop , the following command needed to be executed before mapping to the standard cell library
 
 ```dfflibmap -liberty <relative or abs path>/ lib file```
 
 
 ## DAY 3
+
+Logic Optimization: combinational and sequential (basic)
+
+__Combinational Logic Optimisation__
+
+To remove unused cells from the synthesis design, the command ```'opt_clean -purge'``` is used. It optimises the cells that are redundant to the design but have been intialised from RTL code.
+
+
+![optcheck4cells](https://user-images.githubusercontent.com/125136551/219857892-20726746-7c77-4676-8f29-cd8d123b2312.png)
+
+
+The above diagram involves the cells invoked to solve a complex boolean logic ```y = a?(b?(a & c ):c):(!c);```
+
+The optimisation of this boolean funvtion resulted in a XNOR gate ```y = a^c``` as shown in the image below:
+
+![optcheck4syn](https://user-images.githubusercontent.com/125136551/219857860-fd9eef1a-f501-43ea-a60a-e2a5de6ab7bc.png)
