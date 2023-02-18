@@ -138,6 +138,15 @@ Learning how to use softwares like iverilog , gtkwave ,yosys etc
 
 # 7x1 MUX using iverilog and gtkwave 
 
+flow for simulation:
+```
+Iverilog and gtkwave codelines
+- iverilog <filetop.v> <file1.v> …. <tb_filetop.v>
+- ./a.out
+Copy the generated dumpfile.vcd and run it with
+- gtkwave dumpfile.vcd
+```
+
 __RTL__
 
 ``` 
@@ -210,6 +219,17 @@ __Simulation Waveform__
 
 
 __Synthesis__
+
+flow for synthesis under yosys:
+```
+yosys
+read_liberty -lib <relative or abs path>/ lib file 
+read_verilog <verilog_file.v>
+synth -top <verilog_file> 
+abc -liberty <relative or abs path>/ lib file ( generates results on ur design → netlist verify them before continuing)
+show 
+write_verilog <file_name>.v  OR    write_verilog -noattr  <file_name>.v 
+```
 
 ![mux7x1cells](https://user-images.githubusercontent.com/125136551/219855926-364b343b-7303-473f-9ea2-206114cef57c.png)
 
@@ -317,3 +337,5 @@ endmodule
 ```
 
 ## DAY 2
+
+Hierarchy and flat synthesis under Yosys ; Synthesis of a flop
