@@ -449,7 +449,7 @@ Testing to check whether the netlist generated from the synthesis tool works wit
 
 To make sure that the netlist is to be checked you will need to call the library files present in verilog_model.
 
-# Simulation-Synthesis Match using 2x1 MUX
+### Simulation-Synthesis Match using 2x1 MUX
 
 A RTL design for a 2x1 MUX using ternary operator was tested and the follwing waveform was obtained.
 
@@ -461,7 +461,7 @@ The netlist for the same was generated using yosys and it was tested with the sa
 
 From the two pics, it is clear that Simulation and Synthesis matching is happening.
 
-# Simulation-Synthesis Mismatch using 2x1 MUX
+### Simulation-Synthesis Mismatch using 2x1 MUX
 
 The RTL Design for a 'bad' 2x1 mux was done by not completing the sensitivity list and was tested.
 
@@ -474,7 +474,7 @@ The output shown is not correct as the _y_ is updated only when there is a chang
 
 The difference in outputs is clearly stated. Hence a case of Simulation-Synthesis Mismatch is observed.
 
-# Blocking caveat (understanding blocking assignements)
+### Blocking caveat (understanding blocking assignements)
 
 This RTL desgin of an OR-AND gate was done to understand blocking assigments in verilog. Inputs _a,b_ were fed to the OR gate and its o/p and input _c_ 
 to an AND gate. The block was deigned with blocking assignments with the AND operation first followed by the OR operation. 
