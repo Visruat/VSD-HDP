@@ -440,3 +440,53 @@ In this case all bits of the counter are affiliated with q. Hence three flops ar
 
 
 ## DAY 4
+
+__GLS, blocking vs non-blocking and Synthesis-Simulation mismatch__
+
+Testing to check whether the netlist generated from the synthesis tool works with ur testbench (it definitely should!). But cases of RTL to GLS mismatch do exist.
+
+To make sure that the netlist is to be checked you will need to call the library files present in verilog_model.
+
+# Simulation-Synthesis Match using 2x1 MUX
+
+A RTL design for a 2x1 MUX using ternary operator was tested and the follwing waveform was obtained.
+
+![d4mux1](https://user-images.githubusercontent.com/125136551/221217670-618c955f-be66-4720-b648-4964f3d1d517.png)
+
+The netlist for the same was generated using yosys and it was tested with the same testbench. To do so the library files needed to be called before doing so since the standard cell modules were used.
+
+![d4mux2](https://user-images.githubusercontent.com/125136551/221218052-6303043c-2a33-494c-ab17-0ca254c2b09f.png)
+
+From the two pics, it is clear that Simulation and Synthesis matching is happening.
+
+# Simulation-Synthesis Mismatch using 2x1 MUX
+
+The RTL Design for a 'bad' 2x1 mux was done by not completing the sensitivity list and was tested.
+
+![d4badmux1](https://user-images.githubusercontent.com/125136551/221218656-a53af479-8550-4de1-a10a-40073c0ca300.png)
+
+The output shown is not correct as the _y_ is updated only when there is a change in _sel_. The netlistfor the samw was generated and tested.
+
+
+![d4badmux2](https://user-images.githubusercontent.com/125136551/221219194-20e5071f-50a2-4dbd-8568-1ed198d02c3e.png)
+
+The difference in outputs is clearly stated. Hence a case of Simulation-Synthesis Mismatch is observed.
+
+# Blocking caveat (understanding blocking assignements)
+
+This RTL desgin of an OR-AND gate was done to understand blocking assigments in verilog. Inputs _a,b_ were fed to the OR gate and its o/p and input _c_ 
+to an AND gate. The block was deigned with blocking assignments with the AND operation first followed by the OR operation. 
+
+![d4blocking1](https://user-images.githubusercontent.com/125136551/221220468-26e98bf2-64c9-4227-b390-19bc98855d2e.png)
+
+Output _y_ is incorrect as the previous value of OR o/p is taken for evaluation (flopped value)
+The synthesis of this desgin was done and the netlist was tested.
+
+![d4blocking2](https://user-images.githubusercontent.com/125136551/221221451-1821cb83-9107-49a9-a960-4b064691ffaf.png)
+
+The output shown does incur the previous value of OR o/p hence giving the correct result.
+
+![d4blocking3](https://user-images.githubusercontent.com/125136551/221221832-9ef9dcb6-3c48-41c6-b0e8-014c855f89f1.png)
+
+
+## DAY 5
