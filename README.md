@@ -111,6 +111,8 @@ $ ../configure  --with-x --with-readline=yes --disable-debug
 $ make
 $ sudo make install
 ```
+**Note : if an error occurs use ``` sudo apt install ngspice```**
+
 __Progress image__
 
 ![ngspice](https://user-images.githubusercontent.com/125136551/218372833-4e918809-5289-442d-888c-36851d5127f3.png)
