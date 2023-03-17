@@ -495,3 +495,129 @@ The output shown does incur the previous value of OR o/p hence giving the correc
 
 
 ## DAY 5
+
+__Avoiding latches due to incomplete if case conditions in the code__ 
+
+Eg1: A 2x1 mux with no else block will lead to latch on the i0 - this will become the enable signal for the latch. It is observed in RTL simulation below.
+
+![incomp if RTL](https://user-images.githubusercontent.com/125136551/225942900-c63bed48-9184-4b83-8b78-1a7daabf03ff.png)
+
+
+a latch is inferred in yosys as well
+
+
+![latch inferred ](https://user-images.githubusercontent.com/125136551/225942940-fa2950fb-6e6c-46c3-b6c9-b0339844014d.png)
+
+
+![show incompif](https://user-images.githubusercontent.com/125136551/225942950-f8141a75-c9c7-47ac-9e6e-539a262ea37f.png)
+
+
+Eg2: An undefined case will again lead to a latch being inferred. RTL simulation is shown below
+
+
+![incomp_if2RTL](https://user-images.githubusercontent.com/125136551/225943746-1ede8623-310c-491d-846b-308b9fac4f8f.png)
+
+
+Synthesis results
+
+
+![image](https://user-images.githubusercontent.com/125136551/225944046-3267d819-284c-4993-9b45-f9ad41ec48b6.png)
+
+
+![image](https://user-images.githubusercontent.com/125136551/225945648-b623f3e6-db5d-4c74-8831-bce598e786a4.png)
+
+
+__Avoiding latches due to incomplete case conditions, partial assignments of case outputs , overlapping case conditions.__
+
+__1) Incomplete Case Statement__
+
+Lets take a 4x1 mux where the condtions for select =2,3 are not defined along with default case. Latch is inferred for select =2,3 with enable being sel1_n.
+
+RTL Simulation
+
+![image](https://user-images.githubusercontent.com/125136551/225950975-b376be70-84da-4068-9d8a-8cbd4afabb3d.png)
+
+
+Synthesis Output
+
+
+![incomp_case latch ](https://user-images.githubusercontent.com/125136551/225949703-232279e3-08be-49b5-93b2-eed8c7610680.png)
+
+
+![image](https://user-images.githubusercontent.com/125136551/225955077-46807c63-abf3-4496-b37f-a1a6b5883a66.png)
+
+
+__2) Partial assignment case statement__
+The partial assignment code is as follows 
+```
+module partial_case_assign (input i0 , input i1 , input i2 , input [1:0] sel, output reg y , output reg x);
+always @ (*)
+begin
+	case(sel)
+		2'b00 : begin
+			y = i0;
+			x = i2;
+			end
+		2'b01 : y = i1;
+		default : begin
+		           x = i1;
+			   y = i2;
+			  end
+	endcase
+end
+endmodule
+```
+y will have no latches.A latch will be inferred for x as it has not been assigned a value when sel =1;
+
+
+RTL simulation 
+
+![image](https://user-images.githubusercontent.com/125136551/225957262-77528930-ed57-483c-9630-c4f99b260107.png)
+
+
+Synthesis Output
+
+
+![image](https://user-images.githubusercontent.com/125136551/225957910-0f037ed3-706d-426e-8cf2-8dd172748b80.png)
+
+
+![image](https://user-images.githubusercontent.com/125136551/225958201-463e64b3-a7bb-41d6-b408-ec2a1562d740.png)
+
+
+__3) overlapping case statements__
+
+A situation where more than one case is satisfied in case-statement. This constitutes to bad coding as there should never be cases of case-statements conditions being the same. You will be at the mercy of the simulator to see how it will simultae this confused state since all the cases are checked in a case -statement despite being satisfied(no priority order).
+
+```
+module bad_case (input i0 , input i1, input i2, input i3 , input [1:0] sel, output reg y);
+always @(*)
+begin
+	case(sel)
+		2'b00: y = i0;
+		2'b01: y = i1;
+		2'b10: y = i2;
+		2'b1?: y = i3;
+		//2'b11: y = i3;
+	endcase
+end
+
+endmodule
+```
+
+RTL simulation 
+
+![image](https://user-images.githubusercontent.com/125136551/225959632-5e1487b8-8e9a-4362-8a10-694c732838cb.png)
+
+Synthesis Output
+The Synthesis tool will optimise the code and remove the redundant parallel case. It is observed that no latches are inferred.
+
+![image](https://user-images.githubusercontent.com/125136551/225960701-efa5f105-603a-4a6f-bf60-cdd7c6424849.png)
+
+![image](https://user-images.githubusercontent.com/125136551/225960995-59f6be66-3bf8-47c4-ba45-48c1f675df8a.png)
+
+There will be a simulation synthesis mismatch in this case as the code was optimised to remove the confusion.
+
+![image](https://user-images.githubusercontent.com/125136551/225961703-ba3d88a2-1092-481a-b7d8-e1c4d7c34503.png)
+
+
+
