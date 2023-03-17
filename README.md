@@ -15,7 +15,10 @@ Program link: [VSD-HDP](https://www.vlsisystemdesign.com/hdp/)
      4. [DAY 3](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-3)
      5. [DAY 4](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-4)
      6. [DAY 5](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-5)
-     7. 
+     7. [DAY 6](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-6)
+     8. [DAY 7](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-7)
+     9. [DAY 8](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-8)
+     10. 
 
 # VSD-HDP Status 
 
@@ -24,7 +27,7 @@ System/Tool Setup Check --> all necessary tools and system updates were installe
 
 GitHub ID creation --> Done(https://github.com/Visruat/Visruat-VSD-HDP).
 
-Design choice --> to be discussed on 18th Feb,2023.
+Design choice --> PWM generator.
 
 ### Tool-1 Yosys 
 __Installation guide__
@@ -496,7 +499,7 @@ The output shown does incur the previous value of OR o/p hence giving the correc
 
 ## DAY 5
 
-__Avoiding latches due to incomplete if case conditions in the code__ 
+### Avoiding latches due to incomplete if case conditions 
 
 Eg1: A 2x1 mux with no else block will lead to latch on the i0 - this will become the enable signal for the latch. It is observed in RTL simulation below.
 
@@ -527,7 +530,7 @@ Synthesis results
 ![image](https://user-images.githubusercontent.com/125136551/225945648-b623f3e6-db5d-4c74-8831-bce598e786a4.png)
 
 
-__Avoiding latches due to incomplete case conditions, partial assignments of case outputs , overlapping case conditions.__
+### Avoiding latches due to incomplete case conditions, partial assignments of case outputs ,overlapping case conditions.
 
 __1) Incomplete Case Statement__
 
@@ -619,5 +622,139 @@ There will be a simulation synthesis mismatch in this case as the code was optim
 
 ![image](https://user-images.githubusercontent.com/125136551/225961703-ba3d88a2-1092-481a-b7d8-e1c4d7c34503.png)
 
+### for and for generate
+
+for - used inside always block for evaluating multiple expressions --> like large mux ,demux etc
+generate for - used outside always block for initialising/generating multiple hardware units --> like ripple carry adder(rca)
+
+#### 4x1 mux using for loop 
+
+RTL code
+
+```![incomp_if2RTL](https://user-images.githubusercontent.com/125136551/225978520-c1202055-b1bc-4d49-8d0e-26ca12cb0847.png)
+
+module mux_generate (input i0 , input i1, input i2 , input i3 , input [1:0] sel  , output reg y);
+wire [3:0] i_int;
+assign i_int = {i3,i2,i1,i0};
+integer k;
+always @ (*)
+begin
+for(k = 0; k < 4; k=k+1) begin
+	if(k == sel)
+		y = i_int[k];
+end
+end
+endmodule
+```
+
+RTL Siumlation
 
 
+![mux rtl](https://user-images.githubusercontent.com/125136551/225978550-df4022a4-86e1-4348-9f97-0f44312295ff.png)
+
+
+Synthesis Output
+
+
+![image](https://user-images.githubusercontent.com/125136551/225979553-526243da-264f-4214-b53c-76221ad92990.png)
+
+
+GLS Results
+
+![image](https://user-images.githubusercontent.com/125136551/225980048-2d028788-2249-424b-8262-e6fe19f0cf0a.png)
+
+
+#### 8x1 demux using for loop
+
+RTL code
+
+```
+
+module demux_generate (output o0 , output o1, output o2 , output o3, output o4, output o5, output o6 , output o7 , input [2:0] sel  , input i);
+reg [7:0]y_int;
+assign {o7,o6,o5,o4,o3,o2,o1,o0} = y_int;
+integer k;
+always @ (*)
+begin
+y_int = 8'b0;
+for(k = 0; k < 8; k++) begin
+	if(k == sel)
+		y_int[k] = i;
+end
+end
+endmodule
+```
+
+RTL Simulation
+
+![image](https://user-images.githubusercontent.com/125136551/225980841-2729e4f7-d061-4fbd-b4c8-21e7b7af7979.png)
+
+
+Synthesis Output
+
+![image](https://user-images.githubusercontent.com/125136551/225981397-749ea292-6a5f-4c62-a8f6-ae64deb0ba2b.png)
+
+
+GLS Result
+
+![image](https://user-images.githubusercontent.com/125136551/225981782-432fceea-ec69-4252-96ff-decaa3abf7b8.png)
+
+
+#### Ripple Carry Adder using for generate
+
+rule for addition - [N,M] +1 bits = o/p; N,M are inputs
+
+RTL code
+
+RCA
+```
+module rca (input [7:0] num1 , input [7:0] num2 , output [8:0] sum);
+wire [7:0] int_sum;
+wire [7:0]int_co;
+
+genvar i;
+generate
+	for (i = 1 ; i < 8; i=i+1) begin
+		fa u_fa_1 (.a(num1[i]),.b(num2[i]),.c(int_co[i-1]),.co(int_co[i]),.sum(int_sum[i]));
+	end
+
+endgenerate
+fa u_fa_0 (.a(num1[0]),.b(num2[0]),.c(1'b0),.co(int_co[0]),.sum(int_sum[0]));
+
+
+assign sum[7:0] = int_sum;
+assign sum[8] = int_co[7];
+endmodule
+```
+
+FA
+```
+module fa (input a , input b , input c, output co , output sum);
+	assign {co,sum}  = a + b + c ;
+endmodule
+```
+
+RTL Simulation
+
+![image](https://user-images.githubusercontent.com/125136551/225982924-b975dd11-2571-4d11-81a2-03bfb2eb3a94.png)
+
+
+Synthesis Output
+
+![image](https://user-images.githubusercontent.com/125136551/225983351-a2aa43bf-2c62-4a6f-a377-ba18d57aa054.png)
+
+
+GLS Result
+
+![image](https://user-images.githubusercontent.com/125136551/225983999-88e13c62-3dff-4bc9-902e-80bb046abb15.png)
+
+
+## DAY 6
+
+
+
+## DAY 7
+
+
+
+## DAY 8
