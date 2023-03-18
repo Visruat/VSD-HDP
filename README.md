@@ -804,5 +804,7 @@ output load (parasitic capacitance) --> incresase output logic delay which needs
 NOTE : 1) rule of thumb --> external delay : internal delay is 70:30.
        2) IO paths need to be constrained for MAX delay(setup) and MIN delay(hold).
 
+### DAY 7 LABS
+exploring  
 
 ## DAY 8
