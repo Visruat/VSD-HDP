@@ -804,7 +804,50 @@ output load (parasitic capacitance) --> incresase output logic delay which needs
 NOTE : 1) rule of thumb --> external delay : internal delay is 70:30.
        2) IO paths need to be constrained for MAX delay(setup) and MIN delay(hold).
 
-### DAY 7 LABS
-exploring  
+#### LABS
+- exploring the library file and learning how the files were characterised --> area ,power , delay , capacitances , input (rise , fall) transistion , pin attributes --> direction,function,Clock pin,Timing sense and type etc , Power pin conncetions ( since logic gates are nothing but CMOS --> VGND , VPBN etc), and other necessary information.
+
+![image](https://user-images.githubusercontent.com/125136551/226095402-93a465f4-f094-4947-8362-028d8f8a9fb2.png)
+
+![image](https://user-images.githubusercontent.com/125136551/226095433-7d1a397e-a4c6-4c83-a519-ba5670235308.png)
+
+
+
+- Lookup tables were also present in the lib file so that tool is able to select the necessary o/p based of the 2 indexes. Eg indexes --> input transition and output capacitance  o/p --> timing delay. in case the specified values dont lie in the indexes the range in which the values lie is taken and interpolation is done obtain the value at the specified point.
+
+![image](https://user-images.githubusercontent.com/125136551/226095511-2ab24ee8-a79f-4e16-b63b-8dca76afbda4.png)
+
+
+similarly sequential cells will also have such factors and there exist more dependencies of one pin o/p on the other pin o/p --> related pins. They will also have Clock pins --> There timing type will be specified based of the type of flop it is (rising_edge  or falling_edge --> posedge or negedge). The setup/hold time claculation part should also be specified to the tool as "setup_rising" or  "setup_falling" to let the tool know at what edge of clock must the setup time be calculated.
+
+LHS - posedge clk , RHS - negedge clk for DFF -  defining type of clock
+
+![image](https://user-images.githubusercontent.com/125136551/226096008-c0cf751f-879d-4997-bb1f-b5d673ced382.png)
+
+
+LHS - posedge clk , RHS - negedge clk for DFF - defining setup time calc
+
+![image](https://user-images.githubusercontent.com/125136551/226096288-8d461cb1-1b27-4d7b-a620-f2931e8a1849.png)
+
+__dc shell commands -->  in our case we will be using OpenSTA since its a free source__ // verify if these functions match with OpenSTA 
+
+```
+> list_lib
+> foreach_in_collection my_lib_cell [get_lib_cells */*<the cell you need> { 
+	set my_lib_cell_name [get_object_name $my_lib_cell]; 
+	echo$my_lib_cell_name;
+	}
+> foreach_in_collection my_pins [get_lib_pins <cell name>/*]{  --> my_pins is a loop variable
+	set my_pins_name [get_object_name $my_pins];		--> 'get_object_name' 
+	set pin_dir [get_lib_attribute $my_pins_name direction];   --> 'set' is for variable instantiation ; get_lib_pins/attribute <file_name> <pin/attribute_name>
+	echo$my_pins_name	$pin_dir;                      --> to use a variable we use $<var>; to print a variable echo$<var>
+	}
+
+> source <script filename>.tcl --> for calling a script file
+> list_attributes -app > a  --> for seeing all defined attributes in a library ; it is fed to file called 'a'.
+```
+A script file called my_script.tcl
+![image](https://user-images.githubusercontent.com/125136551/226098186-1e40662f-f136-4dde-97f5-35cac9c742fe.png)
+
 
 ## DAY 8
