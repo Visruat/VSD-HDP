@@ -750,6 +750,10 @@ GLS Result
 
 
 ## DAY 6
+![RTL](https://user-images.githubusercontent.com/125136551/226122845-9088655f-2f77-42f4-87a2-575126563f88.png)
+![syn op](https://user-images.githubusercontent.com/125136551/226122854-39fb9c4a-8ae6-4061-804d-a4d58499f829.png)
+![show](https://user-images.githubusercontent.com/125136551/226122855-2b1f677f-924c-4d48-9d71-5eaa19d77dd5.png)
+![gls ](https://user-images.githubusercontent.com/125136551/226122848-e7b3fa69-8c6f-4ae2-b632-18e28ccde82b.png)
 
 
 
