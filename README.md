@@ -754,7 +754,55 @@ GLS Result
 
 
 ## DAY 7
+#### Introduction to STA
+1) Delay is a function of input transition i.e current (inflow) and output load i.e load capacitance (size of the bucket). [ direct proportional ]
+2) Timing arc --> delay infromation from all inputs to all outputs eg 2 i/p AND gate has 2 timing arcs -> a-q and b-q. Any changes in the inputs will affect the output. For a D FF we have 3 timimg arcs -> Clk - Q delay , setup time and hold time. For a D latch we have 4 timing arcs - D - Q delay ,Clk - Q delay ,setup time and hold time.
 
+__Note : triggering of DFF and Dlatch (setup and hold time) occur at sampling points. Therefore, for DFF it will be at posedge or negedge of Clk and for Dlatch it will be at negedge or posedge of Clk (pos level Clk or neg level clk). ------- IMPORTANT.__
+
+![image](https://user-images.githubusercontent.com/125136551/226082362-7174f5b1-c83e-404e-afb5-234012385d75.png)
+
+3) Timing path - the path for data to move from a) clk of one flop to the input of next flop (reg 2 reg) b) input to output (not present usually IO path) c) input to flop d) clk of flop to output (c,d are IO Timing Paths). The max Tclk value will be the critical path of the design as it will be the least clk delay that can be used for the design.
+
+__Note :a) MAX constraint :- Tclk >= Tcq + Tcombi + Tsetup --> Data path(max) > Clk path(min)  
+	b) MIN constraint :- Thold <= Tcq + Tcombi --> Data path(min) < Clk path(max)__ 
+	
+[Basic STA](https://www.vlsi-expert.com/2011/03/static-timing-analysis-sta-basic-timing.html)
+#### Constraints
+
+![image](https://user-images.githubusercontent.com/125136551/226086438-3547f090-33e1-4854-a296-a1eef6497aee.png)
+
+The constraints are applied based on the design specifications
+1) reg2reg --> contrained by clk -> Tcombi will be squeezed to compensate.
+
+![image](https://user-images.githubusercontent.com/125136551/226086407-a651153d-d1a2-4286-a072-625c365c4524.png)
+
+2) in2reg --> constrained by clk ,input external delay and __input transition__ . Input logic will be squeezed to compensate.
+
+input external delay
+
+![image](https://user-images.githubusercontent.com/125136551/226086333-19932b6c-88e7-4bb8-b486-e568aa0ab356.png)
+
+input transition delay --> incresase input logic delay which needs to be further squeezed.
+
+![image](https://user-images.githubusercontent.com/125136551/226089763-cbfd7cca-cdd0-4d19-9baf-db826860a240.png)
+
+
+3) reg2op --> constrained by clk ,output external delay and __output load (parasitic capacitance)__. Output logic will be squeezed to compensate.
+
+output external delay
+
+![image](https://user-images.githubusercontent.com/125136551/226086364-8046c554-8212-4f55-8151-3b4d43015f51.png)
+
+output load (parasitic capacitance) --> incresase output logic delay which needs to be further squeezed.
+
+![image](https://user-images.githubusercontent.com/125136551/226089930-8df87567-603a-44bc-8d11-1f299bfa717f.png)
+
+
+4) reg2op and in2reg are called IO Paths and the delay modelling is called IO delay Modelling. (standard interface specifications like SPI,I2C --> industry protocols)
+
+NOTE : 1) rule of thumb --> external delay : internal delay is 70:30.
+       2) IO paths need to be constrained for MAX delay(setup) and MIN delay(hold).
 
 
 ## DAY 8
