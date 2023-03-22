@@ -21,13 +21,15 @@ Program link: [VSD-HDP](https://www.vlsisystemdesign.com/hdp/)
      10. 
 
 # VSD-HDP Status 
-
-## Day 0 
 System/Tool Setup Check --> all necessary tools and system updates were installed.
 
 GitHub ID creation --> Done(https://github.com/Visruat/Visruat-VSD-HDP).
 
-Design choice --> PWM generator.
+Design choice --> PWM generator with variable duty cycle.
+
+Pre and post synthesis functionality is verified.
+
+## DAY 0
 
 ### Tool-1 Yosys 
 __Installation guide__
