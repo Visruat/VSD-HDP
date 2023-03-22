@@ -58,6 +58,9 @@ $ sudo apt-get install build-essential clang bison flex \
 $ cd yosys-master/yosys/
 $ make
 $ sudo install make
+
+if it doesn't work ( version mismatch might occur when combining other open software )
+$ sudo apt install yosys
 ```
 
 _Note : one can choose to make a separate build folder for performing the make command(installing yosys). This should be done after installing the dependency in the installation flow_
@@ -89,14 +92,14 @@ $ mkdir build
 $ cd build
 $ cmake ..
 $ make
-```
-_optional_
 
-```$ cmake .. -DUSE_TCL_READLINE=ON```
+if it doesn't work ( version mismatch might occur when combining other open software )
+$ sudo apt install opensta
+```
 
 __Progress image__
 
-![OpenSTA_3](https://user-images.githubusercontent.com/125136551/218371448-24d89203-6ad8-4032-9604-c2d83a0b6358.png)
+![image](https://user-images.githubusercontent.com/125136551/226966597-885579c8-976b-475c-874e-f27dfca0be5f.png)
 
 
 ### Tool-3 ngspice
@@ -115,8 +118,11 @@ $ cd release
 $ ../configure  --with-x --with-readline=yes --disable-debug
 $ make
 $ sudo make install
+
+
+if it doesn't work ( version mismatch might occur when combining other open software )
+$ sudo apt install ngspice
 ```
-**Note : if an error occurs use ``` sudo apt install ngspice```**
 
 __Progress image__
 
