@@ -5,7 +5,7 @@ Program link: [VSD-HDP](https://www.vlsisystemdesign.com/hdp/)
    - Author: Visruat(Visruat T R), [visruattr@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=DmwnWrRlQHWhjxdSBCGtJrvNFWlRTXScgPpNKrkdZjWtwZbdTKCNsWBlKpBtVKVvbwZCnwGMFPxg)
 
    * Program quick links:-
-     1. [Images](https://github.com/Visruat/Visruat-VSD-HDP/tree/main/images)
+     1. [PROJECT](https://github.com/Visruat/Visruat-VSD-HDP/tree/main/PROJECT)
      2. 
 
    * VSD-HDP Status Quick links:-
