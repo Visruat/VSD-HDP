@@ -750,12 +750,49 @@ GLS Result
 
 
 ## DAY 6
-![RTL](https://user-images.githubusercontent.com/125136551/226122845-9088655f-2f77-42f4-87a2-575126563f88.png)
-![syn op](https://user-images.githubusercontent.com/125136551/226122854-39fb9c4a-8ae6-4061-804d-a4d58499f829.png)
-![show](https://user-images.githubusercontent.com/125136551/226122855-2b1f677f-924c-4d48-9d71-5eaa19d77dd5.png)
-![gls ](https://user-images.githubusercontent.com/125136551/226122848-e7b3fa69-8c6f-4ae2-b632-18e28ccde82b.png)
+### PWM Generator with Variable Duty Cycle 
 
+Pulse Width Modulation is a well-known technique used to create pulses of the desired width. The duty cycle is the ratio of how long that PWM signal stays at the high position to the total time period.
 
+![image](https://user-images.githubusercontent.com/125136551/226958359-8436338d-4abd-4561-b30d-43bff62e4f49.png)
+
+### Applications 
+Pulse Width Modulated Wave Generator can be used to:
+
+    - control the brightness of the LED
+    - drive buzzers at different loudnes
+    - control the angle of the servo motor
+    - encode messages in telecommunication
+    - used in speed controlers of motors
+### Block Diagram
+
+This PWM generator generates 10Mhz signal(dependent on the counter module in the block). We can control duty cycles in steps of 10%. The default duty cycle is 50%. Along with clock signal we provide another two external signals to increase and decrease the duty cycle.
+
+![image](https://user-images.githubusercontent.com/125136551/226959879-1ecfcb77-c003-40eb-a5ca-18a2ea976ded.png)
+
+In this specific circuit, we mainly require a n-bit counter and comparator. Duty given to the comparator is compared with the current value of the counter. If current value of counter is lower than duty then comparator results in output high. Similarly, If current value of counter is higher than duty is then comparator results in output low. As counter starts at zero, initially comparator gives high output and when counter crosses duty it becomes low. Hence by controlling duty, we can vary the duty cycle.
+
+![image](https://user-images.githubusercontent.com/125136551/226961190-e529fe7a-2c46-4da1-8959-aee9d0ebcdda.png)
+
+### RTL Simulation 
+
+![RTL SIM  f](https://user-images.githubusercontent.com/125136551/226961985-c7ad5d84-f5ed-4fa7-b43c-79841d5a7785.png)
+
+### Synthesis output
+
+The logic of the code was implemented using the following components
+
+![syn f](https://user-images.githubusercontent.com/125136551/226962025-541f88c7-2415-4467-969a-6c279fe5a422.png)
+
+The gate level netlist generated connections were shown as follows
+
+![syn imp](https://user-images.githubusercontent.com/125136551/226962038-11f69a85-23c7-4cdf-825f-75fdd3cf5766.png)
+
+### GLS Simulation
+
+no Sim-Syn Mismatch
+
+![gls f](https://user-images.githubusercontent.com/125136551/226962059-d2b5ccf8-ceee-400b-a78f-ae5645e93074.png)
 
 ## DAY 7
 #### Introduction to STA
