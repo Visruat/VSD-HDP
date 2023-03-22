@@ -61,6 +61,7 @@ $ sudo install make
 
 if it doesn't work ( version mismatch might occur when combining other open software )
 $ sudo apt install yosys
+$ sudo apt upgrade
 ```
 
 _Note : one can choose to make a separate build folder for performing the make command(installing yosys). This should be done after installing the dependency in the installation flow_
@@ -95,6 +96,7 @@ $ make
 
 if it doesn't work ( version mismatch might occur when combining other open software )
 $ sudo apt install opensta
+$ sudo apt upgrade
 ```
 
 __Progress image__
@@ -122,6 +124,7 @@ $ sudo make install
 
 if it doesn't work ( version mismatch might occur when combining other open software )
 $ sudo apt install ngspice
+$ sudo apt upgrade
 ```
 
 __Progress image__
