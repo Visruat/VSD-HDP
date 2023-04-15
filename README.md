@@ -903,3 +903,44 @@ A script file called my_script.tcl
 
 
 ## DAY 8
+
+NOTE: Important Constraint Commands
+      1)get_clocks
+      2)get_ports
+      3)get_pins
+      4)get_nets
+      5)set_input_transition -min -max
+      6)set_input_delay -min -max 
+      7)set_clock_latency -source 
+      8)set_clock_latency -
+      9)set_clock_uncertainty -
+      10)create_clock -name -per -wave
+      11)get_attribute 
+      12)create_generated_clock -master -source -div
+      13) regexp a b
+      
+      
+## DAY 9
+
+__IN2REG constraints and REG2OUT constraints__
+
+The three start point is from the inputs of the design : reset, increase_duty(Flop),  decrease_duty(Flop). There is no slack violation in the mentioned cases.
+
+![image](https://user-images.githubusercontent.com/125136551/232226421-a99156da-5d16-40a9-b6c5-3f7789728707.png)
+
+
+
+
+![image](https://user-images.githubusercontent.com/125136551/232226453-2f31eb16-37e9-4633-90af-4ac87c5ed26a.png)
+
+
+
+
+![image](https://user-images.githubusercontent.com/125136551/232226481-ce6b6c91-14ec-4441-a957-dd5ac33c52b4.png)
+
+
+REG2REG path yet needs to be checked: need to look into it.
+
+
+## DAY 10
+
