@@ -944,10 +944,34 @@ REG2REG path yet needs to be checked: need to look into it.
 
 ## DAY 10
 
+#### An introduction to SPICE and how it is used to analyse MOSFETS 
+
+The graph below is a spice simulation of a long channel NMOS with __W = 5 L = 2__
+
+
+![image](https://user-images.githubusercontent.com/125136551/233771071-c14b2d88-1c8b-40f7-8425-d2d989a0d941.png)
+
+
+Some of the coordinates as shown in ngspice
 
 ![image](https://user-images.githubusercontent.com/125136551/233771047-132f89bf-25d7-4a4d-b76f-9682cd5fe603.png)
 
-![image](https://user-images.githubusercontent.com/125136551/233771071-c14b2d88-1c8b-40f7-8425-d2d989a0d941.png)
+__Long and Short channel__ ( L > 25nm and L < 25nm ) 
+
+Due to velocity saturation effect in short channel MOS, the saturation sets in early. As a result the peak current is much less compared to long channel MOS.
+
+in the given case the L-channel MOS has peak current idmax = 410 uA while S-channel MOS had peak current idmax = 197 uA.
+
+<img src ="https://user-images.githubusercontent.com/125136551/233771071-c14b2d88-1c8b-40f7-8425-d2d989a0d941.png" width="500" height="500"><img src ="https://user-images.githubusercontent.com/125136551/233774523-fd57c97e-a4c3-4f5c-9dbe-2f8e8c2342fa.png" width="500" height="500">
+
+a plot between id vs Vgs at constant Vds = 1.8V
+
+![image](https://user-images.githubusercontent.com/125136551/233775052-ab88d22d-df4f-4d73-8977-2cc97b945803.png)
+
+The threshold voltage Vt =  0.75V for this NMOS 
+
+
+
 
 
 
