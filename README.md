@@ -974,7 +974,7 @@ __CMOS Voltage Transfer Characteristics__
 
 ![image](https://user-images.githubusercontent.com/125136551/233779653-3d2e6d8d-057c-43c0-b223-ee471122931c.png)
 
-NMOS and PMOS dc characteristics were merged and the voltage transfer characteristics from CMOS inverter was plotted. The above diagram denotes the various behavior exhibited by the NMOS and PMOS clubbed together at different regions Vin and Vout conditions.
+NMOS and PMOS dc characteristics were merged and the voltage transfer characteristics for CMOS inverter was plotted. The above diagram denotes the behavior exhibited by the NMOS and PMOS clubbed together at different Vin and Vout conditions in the range of 0 to 2 V.
 
 
 
