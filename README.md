@@ -970,8 +970,11 @@ a plot between id vs Vgs at constant Vds = 1.8V
 
 The threshold voltage Vt =  0.75V for this NMOS 
 
+__CMOS Voltage Transfer Characteristics__ 
 
+![image](https://user-images.githubusercontent.com/125136551/233779653-3d2e6d8d-057c-43c0-b223-ee471122931c.png)
 
+NMOS and PMOS dc characteristics were merged and the voltage transfer characteristics from CMOS inverter was plotted. The above diagram denotes the various behavior exhibited by the NMOS and PMOS clubbed together at different regions Vin and Vout conditions.
 
 
 
