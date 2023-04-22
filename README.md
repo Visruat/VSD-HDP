@@ -944,3 +944,11 @@ REG2REG path yet needs to be checked: need to look into it.
 
 ## DAY 10
 
+
+![image](https://user-images.githubusercontent.com/125136551/233771047-132f89bf-25d7-4a4d-b76f-9682cd5fe603.png)
+
+![image](https://user-images.githubusercontent.com/125136551/233771071-c14b2d88-1c8b-40f7-8425-d2d989a0d941.png)
+
+
+
+
