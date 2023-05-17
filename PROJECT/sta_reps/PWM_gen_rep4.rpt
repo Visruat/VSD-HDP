@@ -1,0 +1,181 @@
+Startpoint: reset (input port clocked by MYCLK)
+Endpoint: _387_ (removal check against rising-edge clock MYCLK)
+Path Group: **async_default**
+Path Type: min
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   1.00    4.00 v input external delay
+   0.00    4.00 v reset (in)
+   0.61    4.61 ^ _331_/Y (sky130_fd_sc_hd__clkinv_1)
+   0.00    4.61 ^ _387_/RESET_B (sky130_fd_sc_hd__dfrtp_1)
+           4.61   data arrival time
+
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   0.10    3.10   clock uncertainty
+   0.00    3.10   clock reconvergence pessimism
+           3.10 ^ _387_/CLK (sky130_fd_sc_hd__dfrtp_1)
+   0.51    3.61   library removal time
+           3.61   data required time
+---------------------------------------------------------
+           3.61   data required time
+          -4.61   data arrival time
+---------------------------------------------------------
+           0.99   slack (MET)
+
+
+Startpoint: _421_ (rising edge-triggered flip-flop clocked by MYCLK)
+Endpoint: _421_ (rising edge-triggered flip-flop clocked by MYCLK)
+Path Group: MYCLK
+Path Type: min
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   0.00    3.00 ^ _421_/CLK (sky130_fd_sc_hd__dfrtp_1)
+   0.34    3.34 ^ _421_/Q (sky130_fd_sc_hd__dfrtp_1)
+   0.05    3.39 v _351_/Y (sky130_fd_sc_hd__nor2_1)
+   0.00    3.39 v _421_/D (sky130_fd_sc_hd__dfrtp_1)
+           3.39   data arrival time
+
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   0.10    3.10   clock uncertainty
+   0.00    3.10   clock reconvergence pessimism
+           3.10 ^ _421_/CLK (sky130_fd_sc_hd__dfrtp_1)
+  -0.05    3.05   library hold time
+           3.05   data required time
+---------------------------------------------------------
+           3.05   data required time
+          -3.39   data arrival time
+---------------------------------------------------------
+           0.34   slack (MET)
+
+
+Startpoint: _389_ (rising edge-triggered flip-flop clocked by MYCLK)
+Endpoint: PWM_OUT (output port clocked by MYGEN_CLK)
+Path Group: MYGEN_CLK
+Path Type: min
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   0.00    3.00 ^ _389_/CLK (sky130_fd_sc_hd__dfrtp_1)
+   0.37    3.37 ^ _389_/Q (sky130_fd_sc_hd__dfrtp_1)
+   0.50    3.87 ^ _360_/X (sky130_fd_sc_hd__maj3_1)
+   0.00    3.87 ^ PWM_OUT (out)
+           3.87   data arrival time
+
+   0.00    0.00   clock MYGEN_CLK (rise edge)
+   0.00    0.00   clock network delay (ideal)
+   0.00    0.00   clock reconvergence pessimism
+  -1.00   -1.00   output external delay
+          -1.00   data required time
+---------------------------------------------------------
+          -1.00   data required time
+          -3.87   data arrival time
+---------------------------------------------------------
+           4.87   slack (MET)
+
+
+Startpoint: reset (input port clocked by MYCLK)
+Endpoint: _387_ (recovery check against rising-edge clock MYCLK)
+Path Group: **async_default**
+Path Type: max
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   5.00    8.00 v input external delay
+   0.00    8.00 v reset (in)
+   0.74    8.74 ^ _331_/Y (sky130_fd_sc_hd__clkinv_1)
+   0.00    8.74 ^ _387_/RESET_B (sky130_fd_sc_hd__dfrtp_1)
+           8.74   data arrival time
+
+  10.00   10.00   clock MYCLK (rise edge)
+   3.00   13.00   clock network delay (ideal)
+  -0.50   12.50   clock uncertainty
+   0.00   12.50   clock reconvergence pessimism
+          12.50 ^ _387_/CLK (sky130_fd_sc_hd__dfrtp_1)
+   0.01   12.51   library recovery time
+          12.51   data required time
+---------------------------------------------------------
+          12.51   data required time
+          -8.74   data arrival time
+---------------------------------------------------------
+           3.78   slack (MET)
+
+
+Startpoint: increase_duty (input port clocked by MYCLK)
+Endpoint: _418_ (rising edge-triggered flip-flop clocked by MYCLK)
+Path Group: MYCLK
+Path Type: max
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   5.00    8.00 v input external delay
+   0.00    8.00 v increase_duty (in)
+   0.42    8.42 v _382_/X (sky130_fd_sc_hd__mux2_1)
+   0.00    8.42 v _418_/D (sky130_fd_sc_hd__dfrtp_1)
+           8.42   data arrival time
+
+  10.00   10.00   clock MYCLK (rise edge)
+   3.00   13.00   clock network delay (ideal)
+  -0.50   12.50   clock uncertainty
+   0.00   12.50   clock reconvergence pessimism
+          12.50 ^ _418_/CLK (sky130_fd_sc_hd__dfrtp_1)
+  -0.13   12.37   library setup time
+          12.37   data required time
+---------------------------------------------------------
+          12.37   data required time
+          -8.42   data arrival time
+---------------------------------------------------------
+           3.95   slack (MET)
+
+
+Startpoint: _386_ (rising edge-triggered flip-flop clocked by MYCLK)
+Endpoint: PWM_OUT (output port clocked by MYGEN_CLK)
+Path Group: MYGEN_CLK
+Path Type: max
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   0.00    3.00 ^ _386_/CLK (sky130_fd_sc_hd__dfstp_2)
+   0.37    3.37 v _386_/Q (sky130_fd_sc_hd__dfstp_2)
+   0.13    3.49 v _357_/Y (sky130_fd_sc_hd__nor2b_1)
+   0.35    3.84 v _358_/X (sky130_fd_sc_hd__maj3_1)
+   0.35    4.19 v _359_/X (sky130_fd_sc_hd__maj3_1)
+   0.74    4.93 v _360_/X (sky130_fd_sc_hd__maj3_1)
+   0.00    4.93 v PWM_OUT (out)
+           4.93   data arrival time
+
+  10.00   10.00   clock MYGEN_CLK (rise edge)
+   0.00   10.00   clock network delay (ideal)
+   0.00   10.00   clock reconvergence pessimism
+  -3.00    7.00   output external delay
+           7.00   data required time
+---------------------------------------------------------
+           7.00   data required time
+          -4.93   data arrival time
+---------------------------------------------------------
+           2.07   slack (MET)
+
+
+max_transition
+
+Pin _331_/Y v
+max_transition     1.49
+transition_time    1.09
+-----------------------
+Slack              0.40 (MET)
+
