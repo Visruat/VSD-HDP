@@ -1,0 +1,51 @@
+Group                                  Slack
+--------------------------------------------
+MYGEN_CLK                              -0.05
+
+max_transition
+
+Pin                                    Limit   Trans   Slack
+------------------------------------------------------------
+_331_/Y                                 1.50    1.87   -0.37 (VIOLATED)
+_386_/SET_B                             1.50    1.87   -0.37 (VIOLATED)
+_387_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_388_/SET_B                             1.50    1.87   -0.37 (VIOLATED)
+_389_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_390_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_391_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_392_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_393_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_394_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_395_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_396_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_397_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_398_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_399_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_400_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_401_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_402_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_403_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_404_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_405_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_406_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_407_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_408_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_409_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_410_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_411_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_412_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_413_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_414_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_415_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_416_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_417_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_418_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_419_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_420_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_421_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_422_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_423_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_424_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_425_/RESET_B                           1.50    1.87   -0.37 (VIOLATED)
+_360_/X                                 1.50    1.54   -0.04 (VIOLATED)
+
