@@ -987,5 +987,13 @@ NMOS and PMOS dc characteristics were merged and the voltage transfer characteri
 
 ## DAY 16
 
+### STA on PWM_gen.v with different ss,ff,tt PVT corner
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/c6453e93-04ae-4b16-a89e-6430162f01b0)ners
+
+__Plot of TNS,WNS,WHS and Worst Slack with multiple corners__
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/5dbc0368-59f7-4a83-9045-9705dbb21728)
+
 
 
