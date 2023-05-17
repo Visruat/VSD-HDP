@@ -18,16 +18,14 @@ Program link: [VSD-HDP](https://www.vlsisystemdesign.com/hdp/)
      7. [DAY 6](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-6)
      8. [DAY 7](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-7)
      9. [DAY 8](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-8)
-     10. 
-
-# VSD-HDP Status 
-System/Tool Setup Check --> all necessary tools and system updates were installed.
-
-GitHub ID creation --> Done(https://github.com/Visruat/Visruat-VSD-HDP).
-
-Design choice --> PWM generator with variable duty cycle.
-
-Pre and post synthesis functionality is verified.
+     10.[DAY 9](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-9)
+     11.[DAY 10](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-10)
+     12.[DAY 11](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-11)
+     13.[DAY 12](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-12)
+     14.[DAY 13](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-13)
+     15.[DAY 14](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-14)
+     16.[DAY 15](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-15)
+     17.[DAY 16](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-16)
 
 ## DAY 0
 
@@ -976,6 +974,18 @@ __CMOS Voltage Transfer Characteristics__
 
 NMOS and PMOS dc characteristics were merged and the voltage transfer characteristics for CMOS inverter was plotted. The above diagram denotes the behavior exhibited by the NMOS and PMOS clubbed together at different Vin and Vout conditions in the range of 0 to 2 V.
 
+
+## DAY 11
+
+## DAY 12
+
+## DAY 13
+
+## DAY 14
+
+## DAY 15
+
+## DAY 16
 
 
 
