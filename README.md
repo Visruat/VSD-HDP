@@ -979,6 +979,10 @@ NMOS and PMOS dc characteristics were merged and the voltage transfer characteri
 
 ## DAY 11
 
+__SPICE Simulations for same W/L ratios__
+
+
+
 ## DAY 12
 
 ## DAY 13
