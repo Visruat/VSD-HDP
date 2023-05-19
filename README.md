@@ -1038,14 +1038,26 @@ __SPICE Simulation__
 - VOH = 1.728 V , VOL = 0.066 V, VIL = 0.754 V, VOH = 1.014 V.
 - NMH = 0.714 V
 - NML = 0.688 V
-- 
+
 ## DAY 15
+__Spice Simulation of Power Supply Scaling__
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/f65bde36-74ff-4e60-90f1-de13655e662e)
+
+- It can be observed by the above values that the gain increases as power supply is reduced upto 1.2 V and after 1 V it starts decreasing.
+
+__Spice Simulation of Device Variation__
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/711622b6-3ab7-4455-af62-f0b4927df364)
+
+- The swithing threshold is observed to be around 0.98 V.
+- The pmos W/L ratio is more than its nmos counterpart due to which the pmos charges the load capacitor more. Meaning we have a strong p-fet and a weak n-fet.
 
 ## DAY 16
 
 ### STA on PWM_gen.v with different ss,ff,tt PVT corner
 
-![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/c6453e93-04ae-4b16-a89e-6430162f01b0)ners
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/c6453e93-04ae-4b16-a89e-6430162f01b0)
 
 __Plot of TNS,WNS,WHS and Worst Slack with multiple corners__
 
