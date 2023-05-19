@@ -1023,8 +1023,12 @@ __Spice Simulation of CMOS Inverter ( V vs Time )__
 - Fall time --> 0.28ns 
 - The delay values of different inverters with increased pmos W/L ratio can be found.
 - It is seen that the value of rise delay decreases and fall delay increases with increase in W/L of pmos.
-- 
+
 ## DAY 14
+__NOISE MARGIN__
+'''
+    NMH = VOH-VIH // High noise margin
+    NML = VIL-VOL // Low noise margin
 
 ## DAY 15
 
