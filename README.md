@@ -1026,10 +1026,19 @@ __Spice Simulation of CMOS Inverter ( V vs Time )__
 
 ## DAY 14
 __NOISE MARGIN__
-'''
+```
     NMH = VOH-VIH // High noise margin
     NML = VIL-VOL // Low noise margin
+```
 
+__SPICE Simulation__
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/51d61db3-5507-497f-98f9-432d5c20d3e6)
+
+- VOH = 1.728 V , VOL = 0.066 V, VIL = 0.754 V, VOH = 1.014 V.
+- NMH = 0.714 V
+- NML = 0.688 V
+- 
 ## DAY 15
 
 ## DAY 16
