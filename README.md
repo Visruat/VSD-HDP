@@ -979,9 +979,30 @@ NMOS and PMOS dc characteristics were merged and the voltage transfer characteri
 
 ## DAY 11
 
-__SPICE Simulations for same W/L ratios__
+__SPICE Simulations for Id vs Vds for W = 0.39u and L = 0.15u
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/edcae396-09af-4a22-bf2c-284e48abf77f)
+
+- It can be seen that compared to the previous Id vs Vds graph that the saturation current slightly increases even though W/L ratio remains constant.
+- This is because of short channel effect.
+
+__SPICE Simulations for Id vs Vgs for W = 0.39u and L = 0.15u__
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/0dc6d5a0-a16c-4950-a4f4-85d39780523d)
 
 
+__SPICE Simulations for Id vs Vgs for W = 3.12u and L = 1.20u__
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/c28aedbe-dcd0-4e53-a71f-91413be1a8d9)
+
+- It can be seen from the even though the W/L ratio remains 2.6 for both the plots, Id is slightly different. Short channel transistor characteristics has more linearity than the long channel one.
+
+__Velocity Saturation__
+
+- At higher electric fields, the electrons velocity becomes constant.
+- This happens in short channel as the electric field strengh increases due to reduced channel length.
+
+__VTC__
+
+- Used to calculate the delay tables for STA.
+- The plot of Vout vs Vin in CMOS inverter.
 
 ## DAY 12
 
