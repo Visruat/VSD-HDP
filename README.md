@@ -1004,7 +1004,13 @@ __VTC__
 - The plot of Vout vs Vin in CMOS inverter.
 
 ## DAY 12
+__Spice Netlist for inverter__
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/0afa4e76-d92e-4444-9c02-022bf00ad043)
 
+__Spice Simulation for VTC of CMOS Inverter__
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/4e549d52-0c62-4c46-8c42-81a6e4712529)
+
+The switching threshold voltage was found to be around __0.87 V.__
 ## DAY 13
 
 ## DAY 14
