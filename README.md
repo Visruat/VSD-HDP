@@ -1005,6 +1005,7 @@ __VTC__
 
 ## DAY 12
 __Spice Netlist for inverter__
+
 ![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/0afa4e76-d92e-4444-9c02-022bf00ad043)
 
 __Spice Simulation for VTC of CMOS Inverter__
