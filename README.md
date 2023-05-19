@@ -1012,8 +1012,18 @@ __Spice Simulation for VTC of CMOS Inverter__
 ![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/4e549d52-0c62-4c46-8c42-81a6e4712529)
 
 The switching threshold voltage was found to be around __0.87 V.__
-## DAY 13
 
+## DAY 13
+__Spice Simulation of CMOS Inverter ( V vs Time )__
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/d953ae15-2526-49cf-a6bd-4f04db9465a0)
+
+- From the above simulation delay values for rise and fall can be observed.
+- Rise time --> 0.33ns
+- Fall time --> 0.28ns 
+- The delay values of different inverters with increased pmos W/L ratio can be found.
+- It is seen that the value of rise delay decreases and fall delay increases with increase in W/L of pmos.
+- 
 ## DAY 14
 
 ## DAY 15
