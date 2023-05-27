@@ -28,6 +28,11 @@ Program link: [VSD-HDP](https://www.vlsisystemdesign.com/hdp/)
      15. [DAY 14](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-14)
      16. [DAY 15](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-15)
      17. [DAY 16](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-16)
+     18. [DAY 17](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-17)
+     19. [DAY 18](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-18)
+     20. [DAY 19](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-19)
+     21. [DAY 20](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-20)
+     22. [DAY 21](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-21)
 
 ## DAY 0
 
@@ -1062,6 +1067,73 @@ __Spice Simulation of Device Variation__
 __Plot of TNS,WNS,WHS and Worst Slack with multiple corners__
 
 ![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/5dbc0368-59f7-4a83-9045-9705dbb21728)
+
+## DAY 17
+
+### Openlane and sky130 pdk inception
+
+__Important Points__
+
+- The chip in general contains many cores which are known as foundary IPs. These can be PLL, SRAM, DAC etc.
+- The general flow from applicaton software down to the hardware with system software block in between.
+- System Compiler consists of the OS, Compiler and the assembler.
+- OS handles I/O operations, memory management, process management and low level system functions.
+- Compliler converts high level code into the respective low level code according to hardware (ARM, Intelx86, RISCV, MIPS etc).
+- Assembler converts low level machine instructions (ISA) into binary streams.
+- Hardware description is written in HDL for respective ISA to follow PD flow.
+
+__What is PDK?__
+
+PDK (process design kit) is the interface between the FAB and the designers.
+It contains a collection of files used to model a fabrication process for the EDA tools used to design an IC
+
+__RTL TO GDSII flow__
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/069f7525-a2f1-4430-a535-c33f2e5ec505)
+
+1) Placement is done in 2 steps after floor planning:
+	- Global --> tries to find optimal position for all cells. Such cells are not neccesarily legal. There is overlapping of cells.
+	- Detailed --> placements obtained from global are minimally altered to be legal.
+
+2) Clock Distribution Network
+	- To deliver the clk to all sequential elements in a circuit with minimum skew.
+
+3) Route
+	- Implement the interconnect using the available metal layers.
+	- The skywater pdk contains all the data about the interconnect layer.
+	- Metal tracks form a routing grid.
+	- Physical Verification --> DRC and LVS
+
+4) Timing Verification --> STA
+
+Note: OpenLANE --> produce clean (no DRC, LVS, timing violations) GDSII with no human intervention..
+
+5) DFT (Design for Testing)
+	- Scan insertion
+	- Automatic Test Pattern Generation (ATPG)
+	- Test Patterns Compaction
+	- Fault Coverage
+	- Fault Simulation
+
+6) Physical Implementation (Automatic PNR)
+	- Floor/Power planning
+	- End Decoupling capacitors and tap cell insertion
+	- Placement
+	- Post Placement Optimization
+	- CTS
+	- Routing
+7) Logic Equivalency Check (LEC)
+
+some theory and labs left to be added.for DAY 17
+
+## DAY 18
+
+## DAY 19
+
+## DAY 20
+
+## DAY 21
+
 
 
 
