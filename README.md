@@ -810,6 +810,9 @@ The functionality of the PWM generator with variable duty cycle is retained post
 
 ![gls f](https://user-images.githubusercontent.com/125136551/226962059-d2b5ccf8-ceee-400b-a78f-ae5645e93074.png)
 
+
+The related files are present in the [PROJECT](https://github.com/Visruat/Visruat-VSD-HDP/tree/main/PROJECT) folder.
+
 ## DAY 7
 #### Introduction to STA
 1) Delay is a function of input transition i.e current (inflow) and output load i.e load capacitance (size of the bucket). [ direct proportional ]
