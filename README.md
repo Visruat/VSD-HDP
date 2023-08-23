@@ -806,7 +806,7 @@ The gate level netlist generated connections were shown as follows
 
 ### GLS Simulation
 
-no Sim-Syn Mismatch
+The functionality of the PWM generator with variable duty cycle is retained post-synthesis. Hence the deisgn does not have __Simulation-Synthesis Mismatch__
 
 ![gls f](https://user-images.githubusercontent.com/125136551/226962059-d2b5ccf8-ceee-400b-a78f-ae5645e93074.png)
 
