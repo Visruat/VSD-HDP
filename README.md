@@ -1073,9 +1073,61 @@ __Plot of TNS,WNS,WHS and Worst Slack with multiple corners__
 
 ## DAY 17
 
-### Openlane and sky130 pdk inception
+### Software - Hardware (S-H) Communication
 
-__Important Points__
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/10c5d32d-1104-441a-acd3-51af8262cc29)
+
+
+The above image represents the S-H translation. It starts at the __software application level__ which takes in an __input__. This input is now processed by the __Operating System (OS)__. An OS performs low level system functions, handles IO operations and allocates memory. It instigates the __Compiler__ to convert _high level abstract code_ of the software to _Assembly/Low level code instructions_. This is further converted into a _bit stream_ by the __Assembler__ to serve as input to the __Hardware__.
+
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/412487d0-b764-449f-9da2-8c5eaf6bd351)
+
+
+The __Instruction Set Architecture (ISA)__ refers to the 'architecture' of the computer/processor. For example, if the ISA used is of RISC-V the code converted by the compiler should give instructions suitable for RISC-V core. Hence, one can say that ISA basically represents the Hardware at an intermediate stage. 
+
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/9a58e474-b8a3-446a-bdb1-772cab4a852c)
+
+
+The Assembler converts the instructions into a bitstream that is fed to the Hardware. To obtain the hardware or final layout, a certain number of steps need to be followed. The RTL/HDL of the core followed by an optimised/synthesized netlist which converted into the layout/hardware.
+
+### Introduction to Physical Design
+
+Consider a chip on an arduino board, it would contain the following components:-
+
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/1551e2ed-fba2-4277-a661-073d2be9152a)
+
+
+It has several protocols, an _external_ memory unit (SDRAM), GPIOS, PWM etc. Now all (except memory external chip) of these are contained in a __package__ as shown below.
+
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/484c9864-35d7-4120-8ad1-e57419dc6a1a)
+
+
+It represents a 7x7 [dimensions] QFN-48 [Quad Flat No leads; 48 pins].
+
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/ac6af3b0-f2c0-45fa-ac35-1fbc0109fe9b)
+
+
+The chip is connected to the package with the help of __wire bonds__
+
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/51f2a10b-b436-4fac-8c70-9e4418f4efaf)
+
+
+Signals are sent to and fro the pins of the chip via __pads__. The __die__ is the minimal silicon area on which the pads are present. The __core__ is the region which contains the logic of the designed chip.
+
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/62ec00a5-33cc-45a3-8fee-00c6f07a51e4)
+
+
+The core region contains __Macros__ and __Foundry IPs__. __Foundry IPs__ are intellectual blocks which are designed specifically by the foundry and it is unique to each foundry. Some examples are PLL, SRAM, DAC, ADC, etc. __Macros__ are Digital designs which form the crux of the core region. In this case, RISC-V SoC, GPIO bank etc.
+
+__Summary__
 
 - The chip in general contains many cores which are known as foundary IPs. These can be PLL, SRAM, DAC etc.
 - The general flow from applicaton software down to the hardware with system software block in between.
@@ -1084,6 +1136,8 @@ __Important Points__
 - Compliler converts high level code into the respective low level code according to hardware (ARM, Intelx86, RISCV, MIPS etc).
 - Assembler converts low level machine instructions (ISA) into binary streams.
 - Hardware description is written in HDL for respective ISA to follow PD flow.
+
+### Openlane and sky130 pdk inception
 
 __What is PDK?__
 
