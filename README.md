@@ -11,7 +11,7 @@ Program link: [VSD-HDP](https://www.vlsisystemdesign.com/hdp/)
      4. [Useful Scripts](https://github.com/Visruat/Visruat-VSD-HDP/tree/main/PROJECT/useful%20scripts)
 
    * VSD-HDP Status Quick links:-
-     1. [DAY 0](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-0)
+     1. [DAY 0](#day-0)
      2. [DAY 1](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-1)
      3. [DAY 2](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-2)
      4. [DAY 3](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-3)
@@ -32,7 +32,7 @@ Program link: [VSD-HDP](https://www.vlsisystemdesign.com/hdp/)
      19. [DAY 18](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-18)
      20. [DAY 19](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-19)
      21. [DAY 20](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-20)
-     22. [DAY 21](https://github.com/Visruat/Visruat-VSD-HDP/blob/main/README.md#day-21)
+     22. [DAY 21](#day-21)
 
 ## DAY 0
 
@@ -1214,6 +1214,91 @@ __Note: OpenLANE --> produce clean (no DRC, LVS, timing violations) GDSII with n
 	- Post Placement Optimization
 	- CTS
 	- Routing
+
+### Labs
+
+Openlane is automated RTL to GDSII flow that consists of multiple tools (obviously opensource) such as OpenROAD, Yosys, Magic, Netgen, CVC, SPEF-Extractor, KLayout and a number of custom scripts for design exploration and optimization. It has two modes to promote "No human in flow", that is, autonomous and interactive. For understanding the process of the flow, I will be using the "interactive" method.
+
+Before I get into the Openlane Flow, A small intro about Opensource pdks used in Openlane would be helpful. 
+
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/cd47dd12-2490-44b3-9400-dbafa6a4da6e" width="400"> <img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/aa718735-34ec-4175-9951-4d45a61c4140" width="400">
+
+From Openlane is compatible with pdks namely skywater130 and osu. _sky130A_ is the variant of _skywater-pdk_ which is compatible with opensource tools.
+Under the variant, we have libs.tech--> contains the library files related to the tools used in the flow and libs.ref--> contains library files for the different skywater pdks
+
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/6031a7c1-5379-417d-9a29-f6993af06441" width="400"> <img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/222593c1-444e-43c0-ae4e-5c1efc69b5d1" width="400">
+
+I will be using _sky130_fd_sc_hd_ for my design. 
+
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/bf0c6efd-5d19-4a88-858e-838d4b2478a0" width="400">
+
+> Look into the different types of file types which are used to build a pdk.
+> - verilog --> netlists
+> - techlef --> metal layer data and design rules (technology files)
+> - spice --> circuit netlists of analog devices 
+> - maglef --> used for displaying metal layers in the layout tool
+> - mag --> used for displaying layout on the layout tool
+> - lib --> contains the flavours of library files for different process corners. In short logical libraries.
+> - lef --> contains physical info such as shape, size, direction, and symmetry, input and output pins direction for each cellin the design.
+> - gds --> (GDSII) used to store IC layout information.   
+> - cdl --> similar to spice netlists; stores electronic circuit information.
+
+### Commands to run OpenLane
+
+Starting up docker 
+```
+cd /Desktop/work/tools/openlane_working_dir/openlane
+docker
+```
+
+In docker
+```
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+```
+This setups the tool for running the flow
+
+``` run_synthesis``` is used to perform synthesis and sta of your design.
+
+Note: For a custom design. You will need to create a _config.tcl_. The _sky130_fd_sc_hd_config.tcl_ is not compulsory.
+order of priority ( with first being least ) is openlane_default --> config.tcl --> sky130_fd_sc_hd_config.tcl.
+
+So the question that arises is _what is in the file?_
+```
+ # Design
+set ::env(DESIGN_NAME) "picorv32a"
+
+set ::env(VERILOG_FILES) "./designs/picorv32a/src/picorv32a.v"
+set ::env(SDC_FILE) "./designs/picorv32a/src/picorv32a.sdc"
+
+set ::env(CLOCK_PERIOD) "5.000"
+set ::env(CLOCK_PORT) "clk"
+
+
+set ::env(CLOCK_NET) $::env(CLOCK_PORT)
+
+
+
+
+set filename $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/$::env(PDK)_$::env(STD_CELL_LIBRARY)_config.tcl
+if { [file exists $filename] == 1} {
+        source $filename
+}
+```
+
+Config.tcl is used to set the files and parameters in the flow environment. As shown in the snippet above.
+
+### Lab exercise
+__Flop ratio and chip area__
+
+pattern_1 ( before opt command ) <br>
+1613/18036 = 8.9432%
+
+pattern_2 ( post opt command ) <br>
+1613/14876 = 10.8430%
+
+Chip area for module '\picorv32a': 147712.918400
 
 ## DAY 18
 
