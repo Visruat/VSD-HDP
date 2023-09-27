@@ -1142,28 +1142,61 @@ __Summary__
 __What is PDK?__
 
 PDK (process design kit) is the interface between the FAB and the designers.
-It contains a collection of files used to model a fabrication process for the EDA tools used to design an IC
+It contains a collection of files used to model a fabrication process for the EDA tools used to design an IC.
+- Process Design Rules: DRC,LVS,PEX
+- Device Models
+- Digital Standard Cell Libraries
+- I/O Libraries etc
 
 __RTL TO GDSII flow__
 
 ![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/069f7525-a2f1-4430-a535-c33f2e5ec505)
+1) RTL Design
 
-1) Placement is done in 2 steps after floor planning:
-	- Global --> tries to find optimal position for all cells. Such cells are not neccesarily legal. There is overlapping of cells.
-	- Detailed --> placements obtained from global are minimally altered to be legal.
+2) Synthesis
+   - Translation of RTL to a gate level netlist usinf Standard Cell Library (SCL). It is followed by STA to check for initial timing violation.
+  
+3) Floor planning (PD)
+   - Initial Layout of the Design.
+     - Chip Partitioning --> divide the design into smaller blocks while maintaining functionality.
+     - Macro Partitioning --> dividing and placing macros, rows and pins.
+     - Power planning --> setting the VDD and GND layers. The top layers are used as they are wide and offer less resistance.
+       
+> the above steps involve Partitioning, Floor planning and Power planning.
 
-2) Clock Distribution Network
-	- To deliver the clk to all sequential elements in a circuit with minimum skew.
+4) Placement
+   - finalised layout of the modules, macros, pins and pads.
+     - Global --> tries to find optimal position for all cells. Such cells are __not neccesarily legal__. There is __overlapping__ of cells.
+     - Detailed --> placements obtained from global are minimally altered to be legal.
 
-3) Route
-	- Implement the interconnect using the available metal layers.
-	- The skywater pdk contains all the data about the interconnect layer.
-	- Metal tracks form a routing grid.
-	- Physical Verification --> DRC and LVS
+5) Clock Distribution Network  
+	- Clock Tree Synthesis (CTS) perfomred to ensure the clk signal reaches all sequential elements in a circuit design with __zero to minimal skew__.
+        - CTS alters the netlist. Functionality check is required before progressing
+        - __Logical Equivalence Check (LEC)__ --> formally confirm that the function did not change after modifying netlist
+> it is imperative to check functionality when the netlist is modified.
 
-4) Timing Verification --> STA
+Note: __Fake antenna diode insertion__ --> Antenna violations may occur which cause damage to the transistors as reactive charges begin to accumulate (usually taken care by Routing).
+There are two methods to approach this issue.
 
-Note: OpenLANE --> produce clean (no DRC, LVS, timing violations) GDSII with no human intervention..
+- Bridging --> Attaches higher layer intermediary.
+- Antenna diodes --> nullify reactive charges.
+  
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/e003fdee-41e0-4709-8136-45a33d6c4c48" width="400" height="200">	<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/f0dc3fa0-3805-4353-a8e1-4e712a247844" width="200" height="200">
+
+OpenLane adds fake antenna cells to all gates after placement --> if ant violation is detected it will replace the fake cell with a real one.
+
+6) Routing
+   - Implement the interconnect (horizontal and vertical wires) using the available metal layers.
+   - The skywater pdk contains all the data ( location, size, thickness, pitch, vias ..etc) about the interconnect/metal layers.
+   - Metal tracks form a routing grid.
+     - Global Routing --> coarse grained grids used to generate routing guides
+     - Detailed Routing -->  fine grained grids and routing guides to implement actual wiring.
+   - Physical Verification --> DRC and LVS.
+   - Timing Verification --> STA
+  
+> skywater130 pdk --> (1) lowest layer/local interconnect layer (Titanium Nitride) + 5 layers above (Aluminium) = (6)
+	
+__Note: OpenLANE --> produce clean (no DRC, LVS, timing violations) GDSII with no human intervention.__
 
 5) DFT (Design for Testing)
 	- Scan insertion
@@ -1172,16 +1205,15 @@ Note: OpenLANE --> produce clean (no DRC, LVS, timing violations) GDSII with no 
 	- Fault Coverage
 	- Fault Simulation
 
-6) Physical Implementation (Automatic PNR)
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/2b673784-f3fa-4fa3-9efa-1cb9d0189007" width="400" height="200">
+
+6) Physical Implementation (Automatic PNR) --> OpenRoad
 	- Floor/Power planning
 	- End Decoupling capacitors and tap cell insertion
 	- Placement
 	- Post Placement Optimization
 	- CTS
 	- Routing
-7) Logic Equivalency Check (LEC)
-
-some theory and labs left to be added.for DAY 17
 
 ## DAY 18
 
