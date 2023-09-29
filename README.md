@@ -1318,7 +1318,9 @@ The below image explains the factors <br>
 ### Chip Partitioning 
 lets consider a combo logic which consists of a massive number of gates (50,000). When implementing this on a single die the utilization factor will surely increase. Hence the gates are partitioned into smaller blocks with input and outputs between these blocks. These blocks can further be converted to a black box to aid in reuseability of the function in the design.
 
-<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/c284fe11-8418-4fc3-880b-b66c82c8be84" width="450" height="350">
+<p align="center">
+	<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/c284fe11-8418-4fc3-880b-b66c82c8be84" width="450" height="350">
+</p>
 
 When hard macros such as memory, comparator,.. etc are used in the designs, these locations are user defined and the tools will touch these IPs during the automated PnR flow.  
 <br>
