@@ -1,4 +1,4 @@
-A repository containing a detailed documentation of the activities in the VSD-HDP program
+A repository containing a detailed documentation of my progress in the VSD-HDP program
 
 Program link: [VSD-HDP](https://www.vlsisystemdesign.com/hdp/)
 
@@ -1302,6 +1302,38 @@ Chip area for module '\picorv32a': 147712.918400
 
 ## DAY 18
 
+### Width and Height of cells
+Lets consider a basic example of a combo logic between capture and launch flops. Each cell and each flop will have dimensions (in this case lets take unit dimensions). Now to produce the components of the netlist (cell and flops) , it needs to be structured on the silicon wafer die. Hence I would need to place these components of the netlist in certain way such that it fits in the core to be placed on the die.
+
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/64240f25-2bab-4cbb-ad2d-187fb5cf8420" width="400" height="150">
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/a2b07969-04a4-44eb-9b33-a47b07e89af6" width="450" height="150">
+
+__Utilization factor__ = Area of the netlist / Total area of the core ( < 1 usually 0.5/0.6 ) <br>
+__Aspect ratio__ = Height / Width of the core ( if 1 --> square core; else --> rectangle core ) <br>
+
+The below image explains the factors <br>
+<br>
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/8b3d7831-2b46-4173-95ee-05292dea43d1" width="450" height="250">
+
+### Chip Partitioning 
+lets consider a combo logic which consists of a massive number of gates (50,000). When implementing this on a single die the utilization factor will surely increase. Hence the gates are partitioned into smaller blocks with input and outputs between these blocks. These blocks can further be converted to a black box to aid in reuseability of the function in the design.
+
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/c284fe11-8418-4fc3-880b-b66c82c8be84" width="450" height="350">
+
+When hard macros such as memory, comparator,.. etc are used in the designs, these locations are user defined and the tools will touch these IPs during the automated PnR flow.  
+<br>
+
+Note:
+
+### De-coupling Capacitors
+
+Memories are often placed close to the input side. Memory units serve as pre-placed cells. Now connectivity with these units is done through the supply/power lines in the chip. The ayre connected with wires. The physical distance between the source and the cell will cause a drop in the voltage. In such a scenario, if the voltage reaching the cell is not sufficient to meet the _Noise Margin_ specifications, it would cause an unpredictable output at the cell. The solution for it is to use de-coupling capacitors to provide a "backup supply" closer to the unit(zero to minimal voltage drop due to very short distance).
+
+How does a de-coupling capacitor work?
+lets take an AND gate. During switching from 0 to 1 state, if the voltage being supplied to the gate from the Power line drops below the required voltage, the __capacitor Cd__ discharges and supplies power to the AND gate temporarily to ensure correct voltage is being supplied. When no switching is taking place the __Cd__ is charged by the Power lines. Hence this isolates the AND gate from other units and ensures proper voltage is being supplied to it.
+
+
+			 
 ## DAY 19
 
 ## DAY 20
