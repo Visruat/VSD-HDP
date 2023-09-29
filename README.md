@@ -1081,8 +1081,9 @@ __Plot of TNS,WNS,WHS and Worst Slack with multiple corners__
 
 The above image represents the S-H translation. It starts at the __software application level__ which takes in an __input__. This input is now processed by the __Operating System (OS)__. An OS performs low level system functions, handles IO operations and allocates memory. It instigates the __Compiler__ to convert _high level abstract code_ of the software to _Assembly/Low level code instructions_. This is further converted into a _bit stream_ by the __Assembler__ to serve as input to the __Hardware__.
 
-
-![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/412487d0-b764-449f-9da2-8c5eaf6bd351)
+<p align="center">
+	<img width="450" height="500" src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/412487d0-b764-449f-9da2-8c5eaf6bd351">
+</p>
 
 
 The __Instruction Set Architecture (ISA)__ refers to the 'architecture' of the computer/processor. For example, if the ISA used is of RISC-V the code converted by the compiler should give instructions suitable for RISC-V core. Hence, one can say that ISA basically represents the Hardware at an intermediate stage. 
