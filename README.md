@@ -1323,17 +1323,66 @@ lets consider a combo logic which consists of a massive number of gates (50,000)
 When hard macros such as memory, comparator,.. etc are used in the designs, these locations are user defined and the tools will touch these IPs during the automated PnR flow.  
 <br>
 
-Note:
+Note: Macro is a predefined and reuseable blocks of logic which can perform specific tasks. There are two types of macros, namely: <br>
+- Hard macros --> non-flexible, PPA and timing is fixed, available as ICs, industry graded.
+- Soft macros --> flexible, PPA and timing is unpredictable, synthesizable RTL.
 
 ### De-coupling Capacitors
 
 Memories are often placed close to the input side. Memory units serve as pre-placed cells. Now connectivity with these units is done through the supply/power lines in the chip. The ayre connected with wires. The physical distance between the source and the cell will cause a drop in the voltage. In such a scenario, if the voltage reaching the cell is not sufficient to meet the _Noise Margin_ specifications, it would cause an unpredictable output at the cell. The solution for it is to use de-coupling capacitors to provide a "backup supply" closer to the unit(zero to minimal voltage drop due to very short distance).
 
-How does a de-coupling capacitor work?
-lets take an AND gate. During switching from 0 to 1 state, if the voltage being supplied to the gate from the Power line drops below the required voltage, the __capacitor Cd__ discharges and supplies power to the AND gate temporarily to ensure correct voltage is being supplied. When no switching is taking place the __Cd__ is charged by the Power lines. Hence this isolates the AND gate from other units and ensures proper voltage is being supplied to it.
+__How does a de-coupling capacitor work?__ <br>
+lets take an AND gate. During switching from 0 to 1 state, if the voltage being supplied to the gate from the Power line drops below the required voltage, the __capacitor Cd__ discharges and supplies power to the AND gate temporarily to ensure correct voltage is being supplied. When no switching is taking place the __Cd__ is charged by the Power lines. Hence it ensures proper voltage is being supplied to the gate during switching operations. <br>
+It also bypasses high frequency noise from other units and prevents crosstalk between closely placed cells. <br>
+
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/21fcf596-e024-4452-8aad-48501dc14ff1" width="450" height="350">
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/f49706b1-f480-4db8-b725-3c1ead2bf18d" width="450" height="350">
+
+### Power Grids
+The power fluctuation issue was stabilised for a local module using de-coupling capacitors. Now I will have to consider fluctuations between multiple such modules in the chip. <br>
+
+<p align="center">
+	<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/d979f008-6b43-434a-b1a0-13b14a840bca"  width="500" height="500">  
+</p>
+
+<p align="center">	
+	The orange line indicates a 16-bit bus.
+</p>
+
+<p align="center">
+	<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/da8f65a2-5885-438e-9ece-ebb122102efd" width="600" height="200">
+</p>
+
+It is not feasible to have capacitors throughout the chip. However, if not considered it will lead to __voltage drooping__ and __ground bounce__ which will momentarily affect the working of the chip (it is bad for large designs). __Voltage drooping__ is a condition in which multiple capacitors (of a bus) draw current from the same power line causing the source voltage to drop below the original value. Closely, __ground bounce__ is a state when the ground value is slightly above zero because of many capacitors discharge current into a single ground line. These will definitely lead to uncertaintity in the internal functioning of the chip.
+
+<br>
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/05da09e1-7498-47f6-a2c5-38820aee64b6" width="500" height="200">
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/3cbdaf95-9835-45f8-a9b9-7b96a7e36530" width="500" height="200">
+<br>
+
+The solution to this problem is the introduction of many other power lines in the form of a grid/mesh. Hence the capacitor closest to the power line can tap into whenever needed. VDD power lines are placed in vertically and horizontal layers with metal contacts. The GND lines are also placed similarly in the same level as VDD. However it is made sure that both these lines are isolated from each other. <br>
+<p align="center">
+	<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/3bd5141f-266c-4a4b-8731-1caf3ea5135e" width="600" height="500">
+</p>
+
+### Pin placement 
+A chip will have input as well as outputs and to tap into these values I will require pin placement on the chip. Once the design is complete, all the inputs and outputs are placed in a region specifically reserved for pins. This is done by adding a blockage element to that area to restrict the tool from placing cells. This is called as __logical cell placement blockage__.
+
+<p align="center">
+	<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/0e51e84a-e244-4d0e-9482-fc7f6e40b9c1" width="550" height="400"><br>
+	sample design
+</p>
+
+The pins are optimized by fanout from a common point and are placed in a random order in the reserved area. Many parameters are considered while placing the pins such as _connectivity, proximity, type of pins (eg i/o, clk, power/gnd),.. etc_. Clock signal is used to facilitate all the flops and sequential elements in the chip. Hence, the clk pin is larger than the i/o pins so that it offers least resistance to the path.
+
+<p align="center">
+	<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/ae81c5ed-1f6e-4700-8b38-13bfcb16a1e5" width="550" height="400"><br>
+	floorplan of sample design
+</p>
+
+With these in mind, I should be able to understand the floorplanning.
 
 
-			 
 ## DAY 19
 
 ## DAY 20
