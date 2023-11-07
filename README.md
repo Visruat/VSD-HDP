@@ -1392,11 +1392,71 @@ Change switches/variables ( info under _configuration_) in the design __config.t
 to check the results go to the _runs/floorplan_ folder.
 to view the floorplan we make use of magic. The command is as follows:-
 
-```magic -T 
+```magic -T <path to tech-file> lef read <path to lef file> def read <path to def file>```
 
 
+<!-- add the rest here and finish --> 
 
+### Placement ([Reference](https://www.physicaldesign4u.com/2020/02/placement.html))
 
+Placement involves the placing of standard cells onto the floorplan of the die/core. It occurs in 2 steps, that is, __Global Placement__ and __Detailed Placement__. <br>
+Global Placement is a coarse placement of cells which will consider initial timing constraints, congestion and multi-voltage variants. However they are not legalised ( meaning the cells are placed such that they are not present on the standard cell rows, not appended with each other [incase of high frequency operations] and they overlap other cells --> in short they arent placed perfectly). Legalisation occurs in Detailed Placement. This will give rise to new timing violations as the postions of cells will be minutely changed and hence the wire lengths (capacitances) will also change. This will have to be optimised to progress forward. 
+<br>
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/07c8573a-8323-443c-af6c-923d7d7ed204" width="300" height="300">
+<br>
+The above image depicts a physical view of logic cells.
+
+These cells are placed onto the core space in the following manner. <!--insert image of placement here--> <br>
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/e8bb9ca8-a805-40ef-ab02-5c61b83ad9af)
+
+To ensure that the timing is maintained we optimise the placement. The respective cells are placed as close as possible to the related derivatives. In case signal intergrity fails due to large distance between the cells, repeaters (buffers) are placed in the path to reproduce the signal and drive it to the respective cell. Hence Area is compromised for better timing and performance.
+
+### Cell Design Flow
+
+Library file contains information about the gate functionality, dimensions, capacitance rating, timing and delay values and much more. We build, characterise and model these cells so that the tool can understand it.
+
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/a3149f41-2958-411e-ae9b-76d7b71ce130" width="400" height="500">
+
+It consists of 3 sections:- <br>
+__Inputs__
+1) PDKs --> files which contain information about the technology being used for yout design.
+2) DRC & LVS --> Physical design rules that need to be met so that the foundry can fabricate the cell.
+3) SPICE Models --> contains characteristics of the transistors that will be used to build the cell (threshold voltage, aspect ratio, capacitances, etc).
+4) library and user-defined spec --> cell height (_space between Vcc and Gnd rails_), cell width (_delay constraints, drive strength_), supply voltage (_noise margin_), metal layer specs (_specific metal layer to be used_), pin location (_close to Vcc or Gnd_).
+
+__Design steps__
+1) Circuit design --> The circuit is designed by making use of the industry parameters and inputs. For instance, to model the aspect ratio of 2.5, the PMOS = 2.5 NMOS dimensions while keeping height constant based of the technology file. Similarly, Switching threshold is also model based off the requirement.
+2) Layout design --> build the circuit with transistors to meet the required functionality, apply Euler's Path (unidirectional traverse only) and create the respective network graphs, implement the stick diagram of the circuit topology. Finally, it should pass all the DRC & LVS checks set by the foundry.
+3) Characterization --> specific flow; Gives information on Timing, Power and Noise in the form of _.libs_ files along with functionality.
+
+<br>
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/df2409dc-9c69-49b7-b4ff-d75c73ef04b2" width="500" height="400"> <img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/d92bbb95-d8af-44a2-b563-7ec8c89ef4bf" width="500" height="400"> <img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/c5d8ece1-08c4-4550-9cf8-1d415d4bf403" width="500" height="400"> <img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/545d4640-143e-4cd0-89de-2e9832588416" width="400" height="400">
+<br>
+
+__Outputs__
+1) Circuit Description Language (CDL)
+2) GSDII, LEF, extracted SPICE netlists (.cir)
+3) Timing, noise, power .libs, function
+
+#### Characterization Flow (GUNA)
+1) Read the SPICE Model file
+2) Read extracted SPICE netlist
+3) Recognise the behavior of the circuit design*
+4) Read sub-circuit of the design
+5) Set the Power supply
+6) Apply stimulus
+7) Provide the load capacitance (NLDM --> range of capacitances)
+8) Provide simultion constraints
+
+Timing Characterisation --> Delays between input and output wave from (Propagation Delay), Rise time; Fall time delays (Transition delay). <br>
+Solution --> Choosing the correct threshold points, Having proper circuit designs to reduce the wire delays. _Negative delays_ are _intolerable_. <br>
+
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/72aa483e-7335-4b73-8bbc-3f7b29d1a988" width="250" height="250">
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/be38fd5a-345e-45ac-9caa-e3a535bd0f04" width="350" height="250">
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/896b1931-bd6e-4960-bf49-dfc6370ffa98" width="350" height="250">
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/2e2576f8-a4ca-4ac6-8376-3da66a12c8fd" width="400" height="400">
+<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/cb2bed31-1219-4d27-b4be-4c1b22de43b6" width="400" height="400"> 
 
 ## DAY 19
 
