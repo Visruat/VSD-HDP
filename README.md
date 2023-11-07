@@ -1086,13 +1086,13 @@ The above image represents the S-H translation. It starts at the __software appl
 </p>
 
 
-The __Instruction Set Architecture (ISA)__ refers to the 'architecture' of the computer/processor. For example, if the ISA used is of RISC-V the code converted by the compiler should give instructions suitable for RISC-V core. Hence, one can say that ISA basically represents the Hardware at an intermediate stage. 
+The __Instruction Set Architecture (ISA)__ refers to the 'architecture' of the computer/processor. For example, if the ISA used is of RISC-V, the code converted by the compiler should give instructions suitable for RISC-V core. Hence, one can say that ISA basically represents the Hardware at an intermediate stage. 
 
 
 ![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/9a58e474-b8a3-446a-bdb1-772cab4a852c)
 
 
-The Assembler converts the instructions into a bitstream that is fed to the Hardware. To obtain the hardware or final layout, a certain number of steps need to be followed. The RTL/HDL of the core followed by an optimised/synthesized netlist which converted into the layout/hardware.
+The Assembler converts the instructions into a bitstream that is fed to the Hardware. To obtain the hardware or final layout, a certain number of steps need to be followed. The RTL/HDL of the core followed by an optimised/synthesized netlist which is converted into the layout/hardware.
 
 ### Introduction to Physical Design
 
@@ -1155,7 +1155,7 @@ __RTL TO GDSII flow__
 1) RTL Design
 
 2) Synthesis
-   - Translation of RTL to a gate level netlist usinf Standard Cell Library (SCL). It is followed by STA to check for initial timing violation.
+   - Translation of RTL to a gate level netlist using Standard Cell Library (SCL). It is followed by STA to check for initial timing violation.
   
 3) Floor planning (PD)
    - Initial Layout of the Design.
@@ -1171,7 +1171,7 @@ __RTL TO GDSII flow__
      - Detailed --> placements obtained from global are minimally altered to be legal.
 
 5) Clock Distribution Network  
-	- Clock Tree Synthesis (CTS) perfomred to ensure the clk signal reaches all sequential elements in a circuit design with __zero to minimal skew__.
+	- Clock Tree Synthesis (CTS) performed to ensure the clk signal reaches all sequential elements in a circuit design with __zero to minimal skew__.
         - CTS alters the netlist. Functionality check is required before progressing
         - __Logical Equivalence Check (LEC)__ --> formally confirm that the function did not change after modifying netlist
 > it is imperative to check functionality when the netlist is modified.
@@ -1186,7 +1186,7 @@ There are two methods to approach this issue.
 
 OpenLane adds fake antenna cells to all gates after placement --> if ant violation is detected it will replace the fake cell with a real one.
 
-6) Routing
+6) Routing ([Reference](https://www.vlsi-backend-adventure.com/routing.html))
    - Implement the interconnect (horizontal and vertical wires) using the available metal layers.
    - The skywater pdk contains all the data ( location, size, thickness, pitch, vias ..etc) about the interconnect/metal layers.
    - Metal tracks form a routing grid.
@@ -1263,7 +1263,7 @@ This setups the tool for running the flow
 ``` run_synthesis``` is used to perform synthesis and sta of your design.
 
 Note: For a custom design. You will need to create a _config.tcl_. The _sky130_fd_sc_hd_config.tcl_ is not compulsory.
-order of priority ( with first being least ) is openlane_default --> config.tcl --> sky130_fd_sc_hd_config.tcl.
+order of priority for overwritting parameters ( with first being least ) is openlane_default --> config.tcl --> sky130_fd_sc_hd_config.tcl.
 
 So the question that arises is _what is in the file?_
 ```
@@ -1323,7 +1323,7 @@ lets consider a combo logic which consists of a massive number of gates (50,000)
 	<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/c284fe11-8418-4fc3-880b-b66c82c8be84" width="450" height="350">
 </p>
 
-When hard macros such as memory, comparator,.. etc are used in the designs, these locations are user defined and the tools will touch these IPs during the automated PnR flow.  
+When hard macros such as memory, comparator,.. etc are used in the designs, these locations are user defined and the tools will not touch these IPs during the automated PnR flow.  
 <br>
 
 Note: Macro is a predefined and reuseable blocks of logic which can perform specific tasks. There are two types of macros, namely: <br>
@@ -1332,7 +1332,7 @@ Note: Macro is a predefined and reuseable blocks of logic which can perform spec
 
 ### De-coupling Capacitors
 
-Memories are often placed close to the input side. Memory units serve as pre-placed cells. Now connectivity with these units is done through the supply/power lines in the chip. The ayre connected with wires. The physical distance between the source and the cell will cause a drop in the voltage. In such a scenario, if the voltage reaching the cell is not sufficient to meet the _Noise Margin_ specifications, it would cause an unpredictable output at the cell. The solution for it is to use de-coupling capacitors to provide a "backup supply" closer to the unit(zero to minimal voltage drop due to very short distance).
+Memories are often placed close to the input side. Memory units serve as pre-placed cells. Now connectivity with these units is done through the supply/power lines in the chip. They are connected with wires. The physical distance between the source and the cell will cause a drop in the voltage. In such a scenario, if the voltage reaching the cell is not sufficient to meet the _Noise Margin_ specifications, it would cause an unpredictable output at the cell. The solution for it is to use de-coupling capacitors to provide a "backup supply" closer to the unit(zero to minimal voltage drop due to very short distance).
 
 __How does a de-coupling capacitor work?__ <br>
 lets take an AND gate. During switching from 0 to 1 state, if the voltage being supplied to the gate from the Power line drops below the required voltage, the __capacitor Cd__ discharges and supplies power to the AND gate temporarily to ensure correct voltage is being supplied. When no switching is taking place the __Cd__ is charged by the Power lines. Hence it ensures proper voltage is being supplied to the gate during switching operations. <br>
@@ -1363,7 +1363,7 @@ It is not feasible to have capacitors throughout the chip. However, if not consi
 <img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/3cbdaf95-9835-45f8-a9b9-7b96a7e36530" width="500" height="200">
 <br>
 
-The solution to this problem is the introduction of many other power lines in the form of a grid/mesh. Hence the capacitor closest to the power line can tap into whenever needed. VDD power lines are placed in vertically and horizontal layers with metal contacts. The GND lines are also placed similarly in the same level as VDD. However it is made sure that both these lines are isolated from each other. <br>
+The solution to this problem is the introduction of many other power lines in the form of a grid/mesh. Hence the capacitor closest to the power line can tap into whichever needed. VDD power lines are placed in vertically and horizontal layers with metal contacts. The GND lines are also placed similarly in the same level as VDD. However it is made sure that both these lines are isolated from each other. <br>
 <p align="center">
 	<img src="https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/3bd5141f-266c-4a4b-8731-1caf3ea5135e" width="600" height="500">
 </p>
@@ -1383,7 +1383,19 @@ The pins are optimized by fanout from a common point and are placed in a random 
 	floorplan of sample design
 </p>
 
-With these in mind, I should be able to understand the floorplanning.
+### LABS
+
+Change switches/variables ( info under _configuration_) in the design __config.tcl__ to suit your needs. Then run the follwong command.
+
+```run_floorplan```
+
+to check the results go to the _runs/floorplan_ folder.
+to view the floorplan we make use of magic. The command is as follows:-
+
+```magic -T 
+
+
+
 
 
 ## DAY 19
