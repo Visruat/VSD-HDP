@@ -1216,6 +1216,71 @@ __Note: OpenLANE --> produce clean (no DRC, LVS, timing violations) GDSII with n
 	- CTS
 	- Routing
 
+### Installation ([Reference](https://openlane.readthedocs.io/en/latest/getting_started/installation/installation_ubuntu.html))
+
+Docker installation.
+``` 	
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt install -y build-essential python3 python3-venv python3-pip make git
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io
+sudo docker run hello-world
+sudo groupadd docker
+sudo usermod -aG docker $USER
+sudo reboot 
+```
+
+After reboot, check for correct installation.
+```
+docker run hello-world
+```
+
+Successfull installation
+
+![Screenshot from 2023-11-20 11-38-47](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/060050d6-988e-4ce1-aff2-da981d1a0b46)
+
+
+Check for the following dependencies.
+```
+git --version
+docker --version
+python3 --version
+python3 -m pip --version
+make --version
+python3 -m venv -h
+```
+
+Download and build OpenLane from github
+```
+git clone https://github.com/The-OpenROAD-Project/OpenLane
+cd OpenLane
+make
+make test
+```
+
+Run a basic test.
+```
+# Enter a Docker session:
+make mount
+
+# Open the spm.gds using KLayout with sky130 PDK
+klayout -e -nn $PDK_ROOT/sky130A/libs.tech/klayout/tech/sky130A.lyt \
+   -l $PDK_ROOT/sky130A/libs.tech/klayout/tech/sky130A.lyp \
+   ./designs/spm/runs/openlane_test/results/final/gds/spm.gds
+
+# Leave the Docker
+exit
+```
+
+Successful execution with some warnings.
+
+![Screenshot from 2023-11-20 12-07-11](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/dc397965-39c5-4d37-8988-47871b39ae9f)
+
+
 ### Labs
 
 Openlane is automated RTL to GDSII flow that consists of multiple tools (obviously opensource) such as OpenROAD, Yosys, Magic, Netgen, CVC, SPEF-Extractor, KLayout and a number of custom scripts for design exploration and optimization. It has two modes to promote "No human in flow", that is, autonomous and interactive. For understanding the process of the flow, I will be using the "interactive" method.
@@ -1248,8 +1313,8 @@ I will be using _sky130_fd_sc_hd_ for my design.
 
 Starting up docker 
 ```
-cd /Desktop/work/tools/openlane_working_dir/openlane
-docker
+cd Openlane
+make mount
 ```
 
 In docker
@@ -1258,12 +1323,13 @@ In docker
 package require openlane 0.9
 prep -design picorv32a
 ```
-This setups the tool for running the flow
+This sets up the tool for running the flow for the design _picorv32a_ under the _designs_ folder.
 
-``` run_synthesis``` is used to perform synthesis and sta of your design.
+``` run_synthesis``` 
 
-Note: For a custom design. You will need to create a _config.tcl_. The _sky130_fd_sc_hd_config.tcl_ is not compulsory.
-order of priority for overwritting parameters ( with first being least ) is openlane_default --> config.tcl --> sky130_fd_sc_hd_config.tcl.
+is used to perform synthesis and sta of your design.
+
+Note: For a custom design. You will need to create a _config.tcl_. The _sky130_fd_sc_hd_config.tcl_ is not compulsory. _Config.tcl_ overwrites default parameters.
 
 So the question that arises is _what is in the file?_
 ```
