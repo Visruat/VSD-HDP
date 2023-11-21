@@ -1458,10 +1458,32 @@ Change switches/variables ( info under _configuration_) in the design __config.t
 to check the results go to the _runs/floorplan_ folder.
 to view the floorplan we make use of magic. The command is as follows:-
 
-```magic -T <path to tech-file> lef read <path to lef file> def read <path to def file>```
+```magic -T /home/pandabro/.volare/volare/sky130/versions/dd7771c384ed36b91a25e9f8b314355fc26561be/sky130A/libs.tech/magic/sky130A.tech lef read /home/pandabro/OpenLane/designs/picorv32a/runs/RUN_2023.11.17_06.16.24/tmp/merged.nom.lef def read picorv32a.def ```
 
+floorplan results.
 
-<!-- add the rest here and finish --> 
+![Screenshot from 2023-11-21 17-15-18](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/b6e8a7b6-4c32-465d-ae1c-8cb6f750d7ef)
+
+The decap capacitors and tap cells (prevent latchup) are placed on the layout by tool. The physical edges are labelled based of the number of rows (same on b/s) and edges on _Right_ and _Left_. Refer to the diagram below.
+```
+
+			    Left _2x+1_ ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| Right _x_
+     					|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+	  				|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+					.....							        |
+					.								|
+					.								|
+			    Left _x+1_  .								| Right _0_
+```
+
+The image for reference.
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/e30ea154-b0f1-4f55-98ab-67710c0c5ac3)
+
+Standard cells to be placed after placement.
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/60d57109-a144-4b91-9c37-6d7e80f5c8a9)
+
 
 ### Placement ([Reference](https://www.physicaldesign4u.com/2020/02/placement.html))
 
