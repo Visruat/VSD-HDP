@@ -1504,6 +1504,8 @@ To ensure that the timing is maintained we optimise the placement. The respectiv
 
 OpenLane has congestion aware placement using RepLace. The Half Parameter Wire Length (HPWL)  and overflow (OVFL) on reduction reduce the area used for placement of standard cells. (optimal and compact).
 
+```run_placement```
+
 ![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/55741758-4c3d-4076-87c9-b6697ea4822a)
 
 zoomed in image of placement.
