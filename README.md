@@ -1500,6 +1500,17 @@ These cells are placed onto the core space in the following manner. <!--insert i
 
 To ensure that the timing is maintained we optimise the placement. The respective cells are placed as close as possible to the related derivatives. In case signal intergrity fails due to large distance between the cells, repeaters (buffers) are placed in the path to reproduce the signal and drive it to the respective cell. Hence Area is compromised for better timing and performance.
 
+### Labs
+
+OpenLane has congestion aware placement using RepLace. The Half Parameter Wire Length (HPWL)  and overflow (OVFL) on reduction reduce the area used for placement of standard cells. (optimal and compact).
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/55741758-4c3d-4076-87c9-b6697ea4822a)
+
+zoomed in image of placement.
+
+![image](https://github.com/Visruat/Visruat-VSD-HDP/assets/125136551/356b90c3-e7e6-46d3-ab90-7b23c54a9fea)
+
+
 ### Cell Design Flow
 
 Library file contains information about the gate functionality, dimensions, capacitance rating, timing and delay values and much more. We build, characterise and model these cells so that the tool can understand it.
