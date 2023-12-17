@@ -828,6 +828,9 @@ __Note :a) MAX constraint :- Tclk >= Tcq + Tcombi + Tsetup --> Data path(max) > 
 	b) MIN constraint :- Thold <= Tcq + Tcombi --> Data path(min) < Clk path(max)__ 
 	
 [Basic STA](https://www.vlsi-expert.com/2011/03/static-timing-analysis-sta-basic-timing.html)
+
+[explains setup and hold time](https://www.edn.com/understanding-the-basics-of-setup-and-hold-time/)
+
 #### Constraints
 
 ![image](https://user-images.githubusercontent.com/125136551/226086438-3547f090-33e1-4854-a296-a1eef6497aee.png)
